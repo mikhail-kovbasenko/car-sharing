@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/car-sharing/static/css/main.afd7172b.chunk.css",
+    "main.js": "/car-sharing/static/js/main.df8c3779.chunk.js",
+    "main.js.map": "/car-sharing/static/js/main.df8c3779.chunk.js.map",
+    "runtime-main.js": "/car-sharing/static/js/runtime-main.dc8f9114.js",
+    "runtime-main.js.map": "/car-sharing/static/js/runtime-main.dc8f9114.js.map",
+    "static/js/2.94addd96.chunk.js": "/car-sharing/static/js/2.94addd96.chunk.js",
+    "static/js/2.94addd96.chunk.js.map": "/car-sharing/static/js/2.94addd96.chunk.js.map",
+    "static/js/3.6d91329a.chunk.js": "/car-sharing/static/js/3.6d91329a.chunk.js",
+    "static/js/3.6d91329a.chunk.js.map": "/car-sharing/static/js/3.6d91329a.chunk.js.map",
+    "index.html": "/car-sharing/index.html",
+    "static/css/main.afd7172b.chunk.css.map": "/car-sharing/static/css/main.afd7172b.chunk.css.map",
+    "static/js/2.94addd96.chunk.js.LICENSE.txt": "/car-sharing/static/js/2.94addd96.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.dc8f9114.js",
+    "static/js/2.94addd96.chunk.js",
+    "static/css/main.afd7172b.chunk.css",
+    "static/js/main.df8c3779.chunk.js"
+  ]
+}
