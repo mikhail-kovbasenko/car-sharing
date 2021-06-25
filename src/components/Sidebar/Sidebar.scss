@@ -1,0 +1,22 @@
+.sidebar {
+	background-color: #151B1F;
+	padding: 40px 20px 32px 20px;
+	@media(min-width: 1024px) and (max-width: 1439px) {
+		padding-top: 25px;
+	}
+	@media(max-width: 768px) {
+		display: none;
+	}
+	&__row {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		align-items: center;
+		height: 100%;
+	}
+	&__item {
+		font-family: Roboto;
+		font-size: 13px;
+		color:#0EC261;
+	}
+}

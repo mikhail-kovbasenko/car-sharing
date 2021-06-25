@@ -1,0 +1,1 @@
+export const SET_SLIDER_HEIGHT = 'set-slider-height';

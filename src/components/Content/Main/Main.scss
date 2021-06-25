@@ -1,0 +1,150 @@
+$greenColor: #0EC261;
+$greyColor: #999;
+
+.main {
+	width: 50%;
+	height: 100%;
+	font-family: Roboto;
+	@media(min-width: 1024px) and (max-width: 1439px) {
+		width: 60%;
+	}
+	@media(max-width: 1023px) {
+		width: 100%;
+	}
+	&__content {
+		padding: 32px 64px;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		@media(min-width: 769px) and (max-width: 1439px) {
+			padding: 32px;
+		}
+		@media(max-width: 768px) {
+			padding: 16px 0 0 0;
+		}
+		&_mobile-menu {
+			@media(min-width: 769px) {
+				display: none;
+			}
+		}
+		&_section {
+			display: flex;
+			flex-direction: column;
+			@media(max-width: 768px) {
+				padding: 0;
+			}
+		}
+		&_header {
+			margin-bottom: 163px;
+			@media(min-width: 1024px) and (max-width: 1439px) {
+				margin-bottom: 100px;
+			}
+			@media(min-width: 768px) and (max-width: 1023px) {
+				margin-bottom: 50px;
+			}
+			@media(max-width: 768px) {
+				margin-bottom: 33px;
+				padding: 0 16px;
+				display: flex;
+				justify-content: space-between;
+			}
+			&_row {
+				display: flex;
+				justify-content: space-between;
+				@media(max-width: 768px) {
+					flex-direction: column;
+					align-items: flex-end;
+				}
+			}
+			&_title {
+				font-weight: 700;
+				font-size: 30px;
+				color: $greenColor;
+				@media(max-width: 768px) {
+					margin-bottom: 10px;
+				}
+			}
+			&_city {
+				display: flex;
+				align-items: center;
+				&_icon {
+					margin-right: 7.5px;
+				}
+				&_title {
+					font-weight: 400;
+					font-size: 14px;
+					color: $greyColor;
+				}
+			}
+		}
+		&_body {
+			&_row {}
+			&_title {
+				font-weight: 700;
+				font-size: 70px;
+				margin-bottom: 34px;
+				@media(max-width: 768px) {
+					font-size: 32px;
+					padding: 0 16px;
+				}
+				&_ru {}
+				&_eng {
+					color: $greenColor;
+				}
+			}
+			&_description {
+				font-weight: 300;
+				font-size: 26px;
+				margin-bottom: 75px;
+				color: $greyColor;
+				@media(max-width: 768px) {
+					font-size: 18px;
+					padding: 0 16px;
+					margin-bottom: 32px;
+
+				}
+			}
+			&_button {
+				@media(max-width: 768px) {		
+					text-align: center;
+				}
+				& a {
+					padding: 15px 60px 11px 60px;
+					@media(max-width: 768px) {
+						border-radius: 0;
+						width: 100%;
+						display: block;
+					}
+				}
+			}
+		}
+		&_footer {
+			@media(max-width: 768px) {
+				background-color: #151B1F;
+			}
+			&_row {
+				display: flex;
+				justify-content: space-between;
+				font-weight: 400;
+				font-size: 13px;
+				@media (max-width: 768px) {
+					flex-direction: column-reverse;
+					align-items: flex-end;
+					padding: 16px;
+				}
+			}
+			&_copy {
+				color: $greyColor;
+			}
+			&_phone {
+				@media(max-width: 768px) {
+					margin-bottom: 8px;
+					color: $greenColor;
+				}
+				
+			}
+		}
+	}
+}
+
