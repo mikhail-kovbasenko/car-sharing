@@ -10,7 +10,6 @@ const Main = () => {
 				<div className="main__content_section">
 					<div className="main__content_header">
 						<div className="main__content_mobile-menu">
-							<MenuIcon/>
 						</div>
 						<div className="main__content_header_row">
 							<div className="main__content_header_title">Need for drive</div>

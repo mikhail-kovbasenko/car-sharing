@@ -1,8 +1,10 @@
 import { combineReducers, createStore } from "redux"
 import  slider from './reducers/slider';
+import sidebar from "./reducers/sidebar";
 
 const reducers = combineReducers({
-	slider
+	slider,
+	sidebar
 })
 
 const store = createStore(reducers);
