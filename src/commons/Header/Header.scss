@@ -1,0 +1,47 @@
+@import './../../styles/media.scss';
+
+$greenColor: #0EC261;
+$greyColor: #999;
+
+.header {
+	font-family: Roboto;
+	margin-bottom: 163px;
+	@include desktopMin() {margin-bottom: 100px;}
+	@include tablet() {margin-bottom: 50px;}
+	@include beforeTablet() {
+		margin-bottom: 33px;
+		padding: 0 16px;
+		display: flex;
+		justify-content: space-between;
+	}
+	&_row {
+		display: flex;
+		justify-content: space-between;
+		@include beforeTablet() {
+			flex-direction: column;
+			align-items: flex-end;
+		}
+	}
+	&_title {
+		font-weight: 700;
+		font-size: 30px;
+		color: $greenColor;
+		@include beforeTablet() {margin-bottom: 10px;}
+		@include beforeTablet() {
+			margin-bottom: 10px;
+			font-size: 26px;
+		}
+	}
+	&_city {
+		display: flex;
+		align-items: center;
+		&_icon {
+			margin-right: 7.5px;
+		}
+		&_title {
+			font-weight: 400;
+			font-size: 14px;
+			color: $greyColor;
+		}
+	}
+}

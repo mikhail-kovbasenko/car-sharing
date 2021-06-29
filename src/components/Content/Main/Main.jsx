@@ -1,26 +1,13 @@
 import './Main.scss';
-import icon from './../../../commons/icons/icon.svg';
-import menu_icon from './../../../commons/icons/menu-icon.svg';
-import MenuIcon from '../../../commons/MenuIcon/MenuIcon';
+import Header from '../../../commons/Header/Header';
+import { NavLink } from 'react-router-dom';
 
 const Main = () => {
 	return (
 		<div className="main">
 			<div className="main__content">
 				<div className="main__content_section">
-					<div className="main__content_header">
-						<div className="main__content_mobile-menu">
-						</div>
-						<div className="main__content_header_row">
-							<div className="main__content_header_title">Need for drive</div>
-							<div className="main__content_header_city">
-								<div className="main__content_header_city_icon">
-									<img src={icon} alt="icon" />
-								</div>
-								<div className="main__content_header_city_title">Ульяновск</div>
-							</div>
-						</div>
-					</div>
+					<Header/>
 					<div className="main__content_body">
 						<div className="main__content_body_row">
 							<div className="main__content_body_title">
@@ -29,7 +16,7 @@ const Main = () => {
 							</div>
 							<div className="main__content_body_description">Поминутная аренда авто твоего города</div>
 							<div className="main__content_body_button">
-								<a href="#" className="button">Забронировать</a>
+								<NavLink to="/order/location" className="button">Забронировать</NavLink>
 							</div>
 						</div>
 					</div>

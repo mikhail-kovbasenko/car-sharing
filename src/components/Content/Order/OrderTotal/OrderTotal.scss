@@ -1,0 +1,92 @@
+@import "./../../../../styles/media.scss";
+
+.order {
+	&__total {
+		display: flex;
+		flex-direction: column;
+		border-left: 1px solid #eee;
+		@include beforeTabletMax() {
+			border-left: none;
+		}
+	}
+	&__total-title {
+		font-size: 18px;
+		font-weight: 500;
+		display: flex;
+		align-self: flex-end;
+		margin-bottom: 26px;
+		@include desktopMin() {
+			font-size: 16px;
+		}
+		@include tablet() {
+			font-size: 14px;
+		}
+		@include beforeTablet() {
+			font-size: 12px;
+			display: flex;
+			align-self: center;
+		}
+
+	}
+	&__total-info {
+		font-weight: 300;
+		font-size: 14px;
+		display: flex;
+		flex-direction: column;
+		margin-bottom: 32px;
+		@include desktopMin() {
+			font-size: 11px;
+			//justify-content: space-between;
+		}
+		@include beforeTablet() {
+			font-size: 10px;
+		}
+	
+		&-item {
+			display: flex;
+			justify-content: space-between;
+			@include desktopMin() {
+				
+			}
+		}
+		&-title {
+			
+		}
+		&-points {
+			color: #999;
+			margin: 0 5px;
+		}
+		&-result {}
+	}
+	&__total-price {
+		font-weight: 400;
+		font-size: 16px;
+		margin-bottom: 32px;
+		@include desktopMin() {
+			font-size: 14px;
+		}
+		@include tablet() {
+			font-size: 12px;
+		}
+		@include beforeTablet() {
+			font-size: 10px;
+		}
+		&-title {
+			font-weight: 500;
+		}
+	}
+	&__total-button {
+		& a {
+			display: inline-block;
+			font-size: 18px;
+			font-weight: 500;
+			text-align: center;
+			padding: 15px 0 11px 0;
+			width: 100%;
+			@include beforeTablet() {
+				font-size: 14px;
+				padding: 12px 0 8px 0;
+			}
+		}
+	}
+}

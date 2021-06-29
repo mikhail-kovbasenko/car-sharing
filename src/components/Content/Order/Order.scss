@@ -1,0 +1,108 @@
+@import './../../../styles/media.scss';
+
+.order {
+	display: flex;
+	position: relative;
+	width: 100%;
+	padding: 32px 64px 0 64px;
+	font-family: Roboto;
+	@include beforeDesktopMax() {
+		padding: 16px 32px 0px 32px;
+	}
+	@include beforeTablet() {
+		padding-bottom: 5px;
+	}
+	&__container {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+	&__navigation {
+		margin-bottom: 32px;
+		@include beforeDesktopMax() {
+			margin-bottom: 23px;
+		}
+		&-border {
+			position: absolute;
+			right: 0;
+			left: 0;
+			border: 1px solid #eee;
+			border-left: none;
+			border-right: none;
+			padding: 8px 64px;
+			display: flex;
+			@include beforeDesktopMax() {
+				padding: 4px 32px;
+			}
+			& > div {
+				margin-right: 16px;
+				@include beforeTabletMax() {
+					margin-right: 12px;
+				}
+				@include beforeTablet() {
+					margin-right: 4px;
+				}
+				
+			}
+			@include beforeTablet() {
+				display: flex;
+				justify-content: center;
+			}
+		}
+		&-arrow {
+			position: relative;
+			top: 2px;
+			@include beforeTablet() {
+				top: 4px;
+				transform: scale(0.8);
+			}
+			
+		}
+		&-item {
+			& a {
+				font-size: 14px;
+				font-weight: 700;
+				color: #999;
+				@include beforeDesktopMax() {
+					font-size: 12px;
+				}
+				@include beforeTablet() {
+					font-size: 10px;
+				}
+			}
+		}
+		&-active {
+			color: #0EC261 !important;
+		}
+	}
+	&__content {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: space-between;
+		@include beforeTabletMax() {
+			flex-direction: column;
+			justify-content: flex-start;
+		}
+		& > div {
+			padding-top: 37px;
+			@include beforeDesktopMax() {
+				padding-top: 21px;
+			}
+		}
+	}
+	&__forms {
+		width: 75%;
+		@include beforeTabletMax() {width: 100%;}
+
+	}
+	&__total {
+		width: 25%;
+		padding: 0 0 0 32px;
+		@include  beforeTabletMax() {width: 100%;}
+
+	}
+}
+.header {
+	margin-bottom: 32px;
+}

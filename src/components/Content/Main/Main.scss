@@ -1,3 +1,5 @@
+@import './../../../styles/media.scss';
+
 $greenColor: #0EC261;
 $greyColor: #999;
 
@@ -5,9 +7,7 @@ $greyColor: #999;
 	width: 50%;
 	height: 100%;
 	font-family: Roboto;
-	@media(min-width: 1024px) and (max-width: 1439px) {
-		width: 60%;
-	}
+	@include desktopMin() {width: 60%;}
 	@media(max-width: 1023px) {
 		width: 100%;
 	}
@@ -20,75 +20,22 @@ $greyColor: #999;
 		@media(min-width: 769px) and (max-width: 1439px) {
 			padding: 32px;
 		}
-		@media(max-width: 768px) {
-			padding: 16px 0 0 0;
-		}
-		&_mobile-menu {
-			@media(min-width: 769px) {
-				display: none;
-			}
-		}
+		@include beforeTablet() {padding: 16px 0 0 0;}
 		&_section {
 			display: flex;
 			flex-direction: column;
-			@media(max-width: 768px) {
-				padding: 0;
-			}
-		}
-		&_header {
-			margin-bottom: 163px;
-			@media(min-width: 1024px) and (max-width: 1439px) {
-				margin-bottom: 100px;
-			}
-			@media(min-width: 768px) and (max-width: 1023px) {
-				margin-bottom: 50px;
-			}
-			@media(max-width: 768px) {
-				margin-bottom: 33px;
-				padding: 0 16px;
-				display: flex;
-				justify-content: space-between;
-			}
-			&_row {
-				display: flex;
-				justify-content: space-between;
-				@media(max-width: 768px) {
-					flex-direction: column;
-					align-items: flex-end;
-				}
-			}
-			&_title {
-				font-weight: 700;
-				font-size: 30px;
-				color: $greenColor;
-				@media(max-width: 768px) {
-					margin-bottom: 10px;
-				}
-			}
-			&_city {
-				display: flex;
-				align-items: center;
-				&_icon {
-					margin-right: 7.5px;
-				}
-				&_title {
-					font-weight: 400;
-					font-size: 14px;
-					color: $greyColor;
-				}
-			}
+			@include beforeTablet() {padding: 0;}
 		}
 		&_body {
-			&_row {}
 			&_title {
 				font-weight: 700;
 				font-size: 70px;
 				margin-bottom: 34px;
-				@media(max-width: 768px) {
+				@include beforeTablet() {
 					font-size: 32px;
 					padding: 0 16px;
 				}
-				&_ru {}
+
 				&_eng {
 					color: $greenColor;
 				}
@@ -98,20 +45,19 @@ $greyColor: #999;
 				font-size: 26px;
 				margin-bottom: 75px;
 				color: $greyColor;
-				@media(max-width: 768px) {
+				@include beforeTablet() {
 					font-size: 18px;
 					padding: 0 16px;
 					margin-bottom: 32px;
-
 				}
 			}
 			&_button {
-				@media(max-width: 768px) {		
+				@include beforeTablet() {
 					text-align: center;
 				}
 				& a {
 					padding: 15px 60px 11px 60px;
-					@media(max-width: 768px) {
+					@include beforeTablet() {
 						border-radius: 0;
 						width: 100%;
 						display: block;
@@ -120,7 +66,7 @@ $greyColor: #999;
 			}
 		}
 		&_footer {
-			@media(max-width: 768px) {
+			@include beforeTablet() {
 				background-color: #151B1F;
 			}
 			&_row {
@@ -128,7 +74,7 @@ $greyColor: #999;
 				justify-content: space-between;
 				font-weight: 400;
 				font-size: 13px;
-				@media (max-width: 768px) {
+				@include beforeTablet() {
 					flex-direction: column-reverse;
 					align-items: flex-end;
 					padding: 16px;
@@ -138,7 +84,7 @@ $greyColor: #999;
 				color: $greyColor;
 			}
 			&_phone {
-				@media(max-width: 768px) {
+				@include beforeTablet() {
 					margin-bottom: 8px;
 					color: $greenColor;
 				}

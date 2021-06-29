@@ -1,4 +1,4 @@
-import { useRef, useEffect, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import { connect } from "react-redux"
 import { setSliderHeightActionCreator } from "../../../redux/reducers/slider"
 import Slider from "./Slider";
@@ -9,7 +9,7 @@ const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
 	useLayoutEffect(() => {
 		if(sliderContentRef.current) setSliderHeight(sliderContentRef.current.offsetHeight);
 	}, [])
-	useEffect(() => {
+	useLayoutEffect(() => {
 		const onResize = window.addEventListener('resize', () => {
 			const currentSliderHeight = sliderContentRef.current.offsetHeight;
 

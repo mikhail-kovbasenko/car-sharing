@@ -1,8 +1,10 @@
+@import "./../../../styles/media.scss";
+
 .slider {
 	width: 50%;
 	height: 100%;
 	position: relative;
-	@media(min-width: 1024px) and (max-width: 1439px) {
+	@include desktopMin() {
 		width: 40%;
 	}
 	@media(max-width: 1023px) {
@@ -31,9 +33,7 @@
 		font-weight: 500;
 		font-size: 40px;
 		margin-bottom: 8px;
-		@media(min-width: 1024px) and (max-width: 1439px) {
-			font-size: 32px;
-		}
+		@include desktopMin() {font-size: 32px;}
 	}
 
 	&__text {
@@ -41,9 +41,7 @@
 		font-size: 24px;
 		color: #eee;
 		margin-bottom: 32px;
-		@media(min-width: 1024px) and (max-width: 1439px) {
-			font-size: 22px;
-		}
+		@include desktopMin() {font-size: 22px;}
 	}
 
 	&__button {

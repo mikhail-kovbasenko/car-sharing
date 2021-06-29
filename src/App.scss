@@ -1,3 +1,5 @@
+@import './styles/fonts.scss';
+
 /*Обнуление*/
 *{
 	padding: 0;
@@ -37,24 +39,9 @@ img{vertical-align: top;}
 h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 /*--------------------*/
 
-/* Скаченный шрифты */
-@font-face {
-	font-family: Roboto;
-	src: url(./commons/fonts/Roboto-Bold.ttf);
-	font-weight: 700;
-}
-@font-face {
-	font-family: Roboto;
-	src: url(./commons/fonts/Roboto-Regular.ttf);
-	font-weight: 400;
-}
-@font-face {
-	font-family: Roboto;
-	src: url(./commons/fonts/Roboto-Light.ttf);
-	font-weight: 300;
-}
-/* --- */
 /* Scss variables */
+
+
 
 /* --- */
 .wrapper {
@@ -76,4 +63,9 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 	&:active {
 		background: linear-gradient(90deg, #076432 2.61%, #013C27 112.6%);
 	}
+}
+.disabled{
+	pointer-events: none;
+	background: #eee;
+	color: #fff;
 }

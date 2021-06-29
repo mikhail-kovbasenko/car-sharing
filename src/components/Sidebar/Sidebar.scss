@@ -1,9 +1,9 @@
+@import './../../styles/media.scss';
+
 .sidebar {
 	background-color: #151B1F;
 	padding: 40px 30px 32px 30px;
-	@media(min-width: 1024px) and (max-width: 1439px) {
-		padding-top: 25px;
-	}
+	@include desktopMin() {padding-top: 25px;}
 	@media(max-width: 768px) {
 		display: none;
 	}
