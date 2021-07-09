@@ -1,11 +1,11 @@
 import './App.scss';
 import Content from './components/Content/Content';
-import SidebarContainer from './components/Sidebar/SidebarContainer';
+import Sidebar from './components/Sidebar/Sidebar';
 
 const App = () => {
 	return (
 		<div className="wrapper">
-			<SidebarContainer/>
+			<Sidebar/>
 			<Content/>
 		</div>
 	)

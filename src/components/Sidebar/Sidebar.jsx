@@ -2,6 +2,7 @@ import MenuIcon from "../../commons/MenuIcon/MenuIcon";
 import BurgerMenu from "../../commons/BurgerMenu/BurgerMenu";
 import './Sidebar.scss';
 import React from "react";
+import { connect } from "react-redux";
 
 const Sidebar = ({ items }) => {
 	return (
@@ -9,9 +10,6 @@ const Sidebar = ({ items }) => {
 			<BurgerMenu items={items}/>
 			<div className="sidebar">
 				<div className="sidebar__row">
-					<div className="sidebar__item">
-						
-					</div>
 					<div className="sidebar__item">
 						Eng
 					</div>
@@ -21,4 +19,8 @@ const Sidebar = ({ items }) => {
 	)
 }
 
-export default Sidebar;
+const mapStateToProps = state => ({
+	items: state.sidebar.items
+})
+
+export default connect(mapStateToProps)(Sidebar);

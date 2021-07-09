@@ -8,7 +8,7 @@ import SlideInfo from "./SlideInfo/SlideInfo";
 const Slider = ({sliders, sliderRef, height}) => {
 	const getSlides = sliders.map((slide, index) => {
 		return (
-			<Slide key={index} height={height} img={slide.img}>
+			<Slide key={slide.title + index} height={height} img={slide.img}>
 				<SlideInfo title={slide.title} text={slide.text} color={slide.color}/>
 			</Slide>
 		)

@@ -23,7 +23,7 @@ export const renderIndicator = (onClickHandler, isSelected, index) => {
 			onClick={onClickHandler}
 			onKeyDown={onClickHandler}
 			value={index}
-			key={index}
+			key={'button' + index}
 			role="button"
 			tabIndex={0}
 		/>

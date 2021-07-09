@@ -24,7 +24,7 @@ const Main = () => {
 				<div className="main__content_footer">
 					<div className="main__content_footer_row">
 						<div className="main__content_footer_copy">© 2016-2019 «Need for drive»</div>
-						<div className="main__content_footer_phone">8 (495) 234-22-44</div>
+						<div className="main__content_footer_phone"><a href="#">8 (495) 234-22-44</a></div>
 					</div>
 				</div>
 			</div>

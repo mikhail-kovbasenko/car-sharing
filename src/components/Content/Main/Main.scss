@@ -1,7 +1,5 @@
 @import './../../../styles/media.scss';
-
-$greenColor: #0EC261;
-$greyColor: #999;
+@import './../../../styles/colors.scss';
 
 .main {
 	width: 50%;
@@ -84,6 +82,7 @@ $greyColor: #999;
 				color: $greyColor;
 			}
 			&_phone {
+				cursor: pointer;
 				@include beforeTablet() {
 					margin-bottom: 8px;
 					color: $greenColor;

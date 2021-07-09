@@ -36,9 +36,9 @@ const BurgerMenu = ({ items }) => {
 				<div className="bm-wrapper" >
 					{getMenuItems}
 					<div className="bm-wrapper-icons">
-						<img src={telegram} alt=""/>
-						<img src={facebook} alt="" />
-						<img src={instagram} alt="" />
+						<a href="#"><img src={telegram} alt=""/></a>
+						<a href="#"><img src={facebook} alt=""/></a>
+						<a href="#"><img src={instagram} alt=""/></a>
 					</div>
 					<div className="bm-wrapper-lang">
 						Eng
