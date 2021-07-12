@@ -1,0 +1,223 @@
+@import './../../../../../styles/colors.scss';
+@import './../../../../../styles/media.scss';
+
+.model {
+	height: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	&__group {
+		margin-bottom: 48px;
+		font-size: 14px;
+		@include beforeTabletMax() {
+			margin-bottom: 18px;
+			font-size: 12px;
+		}
+	}
+	&__list {
+		height: 100%;
+		width: 70%;
+		@include beforeTabletMax() {
+			width: 100%;
+			height: 250px;
+		}
+		&-container {
+			overflow: hidden;
+			position: relative;
+			height: 100%;
+		}
+		&-content {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			overflow: auto;
+		}
+		&-item {
+			width: 50%;
+			border: 1px solid #eee;
+			height: 300px;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			padding: 16px;
+			@include beforeTablet() {
+				width: 100%;
+				height: 250px;
+			}
+			@include desktopMin() {
+				padding: 8px;
+				height: 250px;
+			}
+			@include tablet() {
+				padding: 4px;
+				height: 150px;
+			}
+			&:hover {
+				border: 1px solid $greenColor;
+				cursor: pointer;
+			}
+			&-header {
+				display: flex;
+				flex-direction: column;
+				font-size: 18px;
+				font-weight: 400;
+				@include desktopMin() {
+					font-size: 16px;
+				}
+				@include tablet() {
+					font-size: 14px;
+				}
+				&-title {
+					margin-bottom: 3px;
+				}
+				&-price {
+					font-size: 14px;
+					@include desktopMin() {
+						font-size: 12px;
+					}
+					@include tablet() {
+						font-size: 10px;
+					}
+					color: #999
+				}
+			}
+			&-img {
+				display: flex;
+				justify-content: flex-end;
+				& > img {
+					width: 300px;
+					@include desktopMin() {
+						width: 220px;
+					}
+					@include tablet() {
+						width: 200px;
+					}
+					@include beforeTablet() {
+						width: 220px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.control-group {
+	display: flex;
+}
+.control {
+	display: flex;
+	position: relative;
+	padding-left: 22px;
+	padding-top: 5px;
+	cursor: pointer;
+	margin-right: 16px;
+	@include tablet() {
+		padding-top: 6px;
+	}
+}
+.control input {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+.control_indicator {
+	position: absolute;
+	top: 5.5px;
+	left: 0;
+	height: 12px;
+	width: 12px;
+	background: #e6e6e6;
+	border: 0px solid #0EC261;
+}
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+	background: #cccccc;
+}
+
+.control input:checked ~ .control_indicator {
+	background: #0EC261;
+}
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+	background: #0EC261;
+}
+.control input:disabled ~ .control_indicator {
+	background: #e6e6e6;
+	opacity: 0.6;
+	pointer-events: none;
+}
+.control_indicator:after {
+	box-sizing: unset;
+	content: '';
+	position: absolute;
+	display: none;
+}
+.control input:checked ~ .control_indicator:after {
+	display: block;
+}
+.control-radio .control_indicator {
+	border-radius: 50%;
+}
+
+.control-radio .control_indicator:after {
+	left: 3px;
+	top: 3px;
+	height: 6px;
+	width: 6px;
+	border-radius: 50%;
+	background: #ffffff;
+}
+.control-radio input:disabled ~ .control_indicator:after {
+	background: #7b7b7b;
+}.control-radio .control_indicator::before {
+	content: '';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 3rem;
+	height: 3rem;
+	margin-left: -1.1rem;
+	margin-top: -1rem;
+	background: #0EC261;
+	border-radius: 3rem;
+	opacity: 0.6;
+	z-index: 99999;
+	transform: scale(0);
+}
+@keyframes s-ripple {
+	0% {
+		 opacity: 0;
+		 transform: scale(0);
+	}
+	20% {
+		 transform: scale(0.5);
+	}
+	100% {
+		 opacity: 0.01;
+		 transform: scale(0.5);
+	}
+}
+@keyframes s-ripple-dup {
+  0% {
+		transform: scale(0);
+	}
+  30% {
+		 transform: scale(1);
+	}
+	60% {
+		 transform: scale(1);
+	}
+	100% {
+		 opacity: 0;
+		 transform: scale(1);
+	}
+}
+.control-radio input + .control_indicator::before {
+	animation: s-ripple 250ms ease-out;
+}
+.control-radio input:checked + .control_indicator::before {
+	animation-name: s-ripple-dup;
+}

@@ -36,7 +36,7 @@ const Slider = ({sliders, sliderRef, height}) => {
 const Slide = styled.div`
 	height: ${props => props.height}px;
 	width: 100%;
-	background: ${props => `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${process.env.PUBLIC_URL}/images/${props.img})`};
+	background: ${props => `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${process.env.PUBLIC_URL}/slider-images/${props.img})`};
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;

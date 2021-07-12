@@ -1,12 +1,21 @@
-import { Switch, Route } from 'react-router';
-import Location from './../OrderContent/Location/Location';
+import { useEffect } from 'react';
+import { Switch, Route, withRouter } from 'react-router';
+import Location from './Location/Location';
+import ModelContainer from './Model/ModelContainer';
 
-const OrderContent = () => {
+const OrderContent = ({history}) => {
+	useEffect(() => {
+		const pathname = history.location.pathname;
+		
+		if(pathname === '/order/location') return;
+		
+		history.push('/order/location');
+	}, [])
 	return (
 		<div className="order__forms">
 			<Switch>
 				<Route path="/order/location" component={Location} />
-				<Route path="/order/modal" />
+				<Route path="/order/model" component={ModelContainer}/>
 				<Route path="/order/extra" />
 				<Route path="/order/total" />
 			</Switch>
@@ -14,4 +23,4 @@ const OrderContent = () => {
 	)
 }
 
-export default OrderContent;
+export default withRouter(OrderContent);

@@ -16,7 +16,7 @@ const Main = () => {
 							</div>
 							<div className="main__content_body_description">Поминутная аренда авто твоего города</div>
 							<div className="main__content_body_button">
-								<NavLink to="/order/location" className="button">Забронировать</NavLink>
+								<NavLink to="/order" className="button">Забронировать</NavLink>
 							</div>
 						</div>
 					</div>

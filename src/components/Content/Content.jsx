@@ -17,8 +17,8 @@ const Content = () => {
 	return (
 		<div className="content">
 			<Switch>
-				<Route  exact path="/" render={getMainPage}/>
-				<Route  exact path="/order/location" component={OrderContainer}/>
+				<Route exact path="/" render={getMainPage}/>
+				<Route path="/order" component={OrderContainer}/>
 			</Switch>
 		</div>
 	)
