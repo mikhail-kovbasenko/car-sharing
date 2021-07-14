@@ -33,3 +33,6 @@ $desktop: 1400px;
 @mixin beforeTabletMax {
 	@media(max-width: $tabletMax) {@content;}
 }
+@mixin size525 {
+	@media(max-width: 525px) {@content}
+}

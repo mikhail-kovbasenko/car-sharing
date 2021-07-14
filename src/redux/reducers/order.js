@@ -1,3 +1,5 @@
+import { CHANGE_EXTRA_DATE, CHANGE_FROM_EXTRA_DATE, CHANGE_TO_EXTRA_DATE } from "../types";
+
 const initialState = {
 	navItems: [
 		{id: 1, title: 'Местоположение', to: 'location', visited: false},
@@ -19,8 +21,11 @@ const initialState = {
 
 const order = (state = initialState, action) => {
 	switch(action.type) {
+		
 		default: return state;
 	}
 }
+
+
 
 export default order;

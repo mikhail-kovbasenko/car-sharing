@@ -1,0 +1,145 @@
+@import './../../../../../styles/custom-checkbox.scss';
+@import './../../../../../styles/media.scss';
+
+.extra {
+	height: 100%;
+	font-size: 14px !important;
+	font-weight: 300 !important;
+	@include beforeTablet() {
+		font-size: 12px !important;
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+
+		@include tablet() {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		@include beforeTablet() {
+			flex-direction: row;
+			justify-content: space-between;
+			flex-wrap: wrap;
+		}
+		@include size525() {
+			flex-direction: column;
+			align-items: center;
+			font-size: 10px !important;
+		}
+		& > div {
+			@include beforeTablet() {
+				width: 50%;
+			}
+
+			
+		}
+		& .control-group {
+			@include tablet() {
+				flex-direction: column;
+			}
+
+		}
+	}
+
+	&__color {
+		margin-bottom: 32px;
+		&-group {
+		
+		}
+		@include size525() {
+
+		}
+	}
+
+	&__date {
+		margin-bottom: 32px;
+		&-group {
+			display: inline-flex;
+			&-container {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				
+				& > div {
+					display: flex;
+					justify-content: space-between;
+					&:first-child {
+						margin-bottom: 13px;
+						@include beforeTablet() {
+							margin-bottom: 8px;
+						}
+					}
+				}
+			}
+			&-label {
+				display: flex;
+				margin-right: 16px;
+				justify-content: center;
+				align-items: center;
+				
+			}
+			&-element {
+				
+		
+				& > input {
+					border-bottom: 1px solid #999;
+					padding: 3px;
+					width: 224px;
+					&::placeholder {
+						@include beforeTablet() {
+							font-size: 12px;
+						}
+						@include size525() {
+							font-size: 10px;
+						}
+					}
+					@include beforeTablet() {
+						width: 154px
+					}
+					@include size525() {
+						width: 114px;
+					}
+					
+				}
+			}
+		}
+	}
+
+	&__rate {
+		margin-bottom: 32px;
+		& .control-group {
+			flex-direction: column;
+		}
+	}
+
+	&__additional {
+		&-group {
+			@include beforeTablet() {
+				display: flex;
+				flex-direction: row;
+			}
+			&-element {
+				margin-bottom: 8px;
+				& > input {
+					margin-right: 5px;
+				}
+			}
+		}
+	}
+}
+
+.extra-title {
+	font-weight: 300;
+	font-size: 14px;
+	margin-bottom: 16px;
+	@include beforeTablet() {
+		font-size: 12px;
+		margin-bottom: 14px;
+		font-weight: 700;
+	}
+	@include size525() {
+		font-size: 12px;
+		margin-bottom: 12px;
+		text-align: center;
+	}
+}
