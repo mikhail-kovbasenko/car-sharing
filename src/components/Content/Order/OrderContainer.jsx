@@ -6,10 +6,9 @@ const OrderContainer = ({navItems}) => {
 	return <Order navItems={navItems}/>
 }
 
-const mapStateToProps = state => {
-	return {
-		navItems: state.order.navItems
-	}
-}
+const mapStateToProps = state => ({
+	navItems: state.order.navItems
+})
+
 
 export default connect(mapStateToProps)(OrderContainer);
