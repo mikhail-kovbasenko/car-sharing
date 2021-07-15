@@ -17,9 +17,6 @@ const Slider = ({sliders, sliderRef, height}) => {
 		<div className="slider">
 			<div className="slider__content" ref={sliderRef}>
 				<Carousel
-					// autoPlay={true}
-					// interval={4000}
-					// infiniteLoop
 					showThumbs={false} 
 					statusFormatter={() => false}
 					renderIndicator={renderIndicator}

@@ -1,5 +1,6 @@
 import prev_arrow from './../../commons/icons/arrow-back.svg';
 import next_arrow from './../../commons/icons/arrow-forward.svg';
+import nextId from 'react-id-generator';
 import './carouselCustomize.scss';
 
 const indicatorStyle = {
@@ -17,13 +18,13 @@ export const renderIndicator = (onClickHandler, isSelected, index) => {
 			style={{...indicatorStyle, backgroundColor: '#0EC261'}}
 		/>
 	}
+	const keyId = nextId();
 	return <li
 			style={indicatorStyle}
-			key={index}
 			onClick={onClickHandler}
 			onKeyDown={onClickHandler}
 			value={index}
-			key={'button' + index}
+			key={keyId}
 			role="button"
 			tabIndex={0}
 		/>
