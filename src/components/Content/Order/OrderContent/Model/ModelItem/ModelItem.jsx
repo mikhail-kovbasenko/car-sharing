@@ -1,8 +1,8 @@
-import styled from "styled-components";
+const ModelItem = ({data, checkedModel, clickOnCarModel}) => {
+	const checked = checkedModel === data.id ? 'checked-car' : null;
 
-const ModelItem = ({data}) => {
 	return (
-		<div className="model__list-item">
+		<div className={`model__list-item ${checked}`} onClick={() => clickOnCarModel(data.id)}>
 			<div className="model__list-item-header">
 				<div className="model__list-item-header-title">{data.title}</div>
 				<div className="model__list-item-header-price">{`${data.min} - ${data.max} ₽`}</div>
@@ -13,7 +13,5 @@ const ModelItem = ({data}) => {
 		</div>
 	)
 }
-
-const CarModel = styled.div``;
 
 export default ModelItem;

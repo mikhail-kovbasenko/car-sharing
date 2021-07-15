@@ -1,10 +1,10 @@
 import './Model.scss';
 import ModelItem from './ModelItem/ModelItem';
 
-const Model = ({cars}) => {
-	console.log(cars);
+const Model = ({cars, checkedModel, clickOnCarModel}) => {
+	console.log(checkedModel);
 	const getModelItems = cars.map((item) => {
-		return <ModelItem key={item.id} data={item}/>
+		return <ModelItem key={item.id} data={item} clickOnCarModel={clickOnCarModel} checkedModel={checkedModel}/>
 	})
 	return (
 		<div className="model">
@@ -35,7 +35,5 @@ const Model = ({cars}) => {
 		</div>
 	)
 }
-
-
 
 export default Model;

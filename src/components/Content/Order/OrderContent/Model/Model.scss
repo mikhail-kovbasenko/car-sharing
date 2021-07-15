@@ -35,6 +35,9 @@
 			flex-wrap: wrap;
 			overflow: auto;
 		}
+		::-webkit-scrollbar {
+			display: none;
+	  }
 		&-item {
 			width: 50%;
 			border: 1px solid #eee;
@@ -56,7 +59,7 @@
 				height: 150px;
 			}
 			&:hover {
-				border: 1px solid $greenColor;
+				border: 1px solid #999;
 				cursor: pointer;
 			}
 			&-header {
@@ -101,5 +104,11 @@
 				}
 			}
 		}
+	}
+}
+.checked-car {
+	border: 1px solid $greenColor !important;
+	&:hover {
+		border: 1px solid $greenColor !important;
 	}
 }

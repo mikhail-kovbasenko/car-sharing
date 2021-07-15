@@ -1,6 +1,6 @@
 import "./Location.scss";
 
-const Location = () => {
+const Location = ({city, pickUp, onChangeCity, onChangePickUp}) => {
 	return (
 		<div className="location">
 			<div className="location__container">
@@ -11,10 +11,16 @@ const Location = () => {
 					</div>
 					<div className="location__elements">
 						<div className="location__element">
-							<input type="text" placeholder="Начните вводить город"/>
+							<input type="text" placeholder="Начните вводить город" 
+													 value={city}
+													 onChange={onChangeCity}
+												/>
 						</div>
 						<div className="location__element">
-							<input type="text" placeholder="Начните вводить пункт выдачи"/>
+							<input type="text" placeholder="Начните вводить пункт выдачи"
+													 value={pickUp}
+													 onChange={onChangePickUp}
+												/>
 						</div>
 					</div>
 				</div>

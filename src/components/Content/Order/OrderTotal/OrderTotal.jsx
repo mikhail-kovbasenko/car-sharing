@@ -1,7 +1,7 @@
 import "./OrderTotal.scss";
-import { NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
-const OrderTotal = () => {
+const OrderTotal = ({renderBtn}) => {
 	return (
 		<div className="order__total">
 			<div className="order__total-title">Ваш заказ:</div>
@@ -15,7 +15,12 @@ const OrderTotal = () => {
 			</div>
 			<div className="order__total-price"><span className="order__total-price-title">Цена</span>: от 8 000 до 12 000 ₽</div>
 			<div className="order__total-button">
-				<NavLink to="/order/model" className="button	disabled">Выбрать модель</NavLink>
+				<Switch>
+					<Route path="/order/location" render={() => renderBtn('Модель', 'model')}/>
+					<Route path="/order/model" render={() => renderBtn('Дополнительно', 'extra')}/>
+					<Route path="/order/extra" render={() => renderBtn('Итого', 'total')}/>
+					<Route path="/order/total" render={() => renderBtn('Заказать', 'confirm')}/>
+				</Switch>
 			</div>
 		</div>
 	)

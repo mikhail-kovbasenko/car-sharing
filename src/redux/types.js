@@ -1,3 +1,4 @@
 export const SET_SLIDER_HEIGHT = 'set-slider-height';
-export const CHANGE_FROM_EXTRA_DATE = 'change-from-extra-date';
-export const CHANGE_TO_EXTRA_DATE = 'change-to-extra-date';
+export const SET_CITY_VALUE = 'set-city-value';
+export const SET_PICKUP_VALUE = 'set-pickup-value';
+export const CHECK_CAR_MODEL = 'check-car-model';
