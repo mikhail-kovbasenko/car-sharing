@@ -1,16 +1,23 @@
+import { useEffect } from "react";
 import { useRef, useLayoutEffect } from "react";
 import { connect } from "react-redux"
-import { setSliderHeightActionCreator } from "../../../redux/reducers/slider"
+import sliderData from "../../../commons/slider-data";
+import { setSliderDataActionCreator, setSliderHeightActionCreator } from "../../../redux/reducers/slider"
 import Slider from "./Slider";
 
-const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
+const SliderContainer = ({sliders, sliderHeight, setSliderHeight, setSliderData}) => {
 	const sliderContentRef = useRef();
 
+	useEffect(() => {
+		if(!sliders) {
+			setSliderData(sliderData);
+		}
+	})
 	useLayoutEffect(() => {
 		if(sliderContentRef.current) {
 			setSliderHeight(sliderContentRef.current.offsetHeight)
 		}
-	}, [])
+	}, [sliders])
 	useLayoutEffect(() => {
 		const onResize = window.addEventListener('resize', () => {
 			const currentSliderHeight = sliderContentRef.current.offsetHeight;
@@ -19,21 +26,22 @@ const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
 		})
 
 		return () => window.removeEventListener('resize', onResize);
-	}, [])
+	}, [sliders])
 
-	return <Slider sliders={sliders} sliderRef={sliderContentRef} height={sliderHeight}/>
+	return !sliders ? null : <Slider sliders={sliders} sliderRef={sliderContentRef} height={sliderHeight}/>
 }
 
-const mapStateToProps = state => {
-	return {
-		sliders: Object.values(state.slider.items),
+const mapStateToProps = state => ({
+		sliders: state.slider.items,
 		sliderHeight: state.slider.sliderHeight
-	}
-}
+})
 const mapDispatchToProps = dispatch => {
 	return {
 		setSliderHeight: height => {
 			dispatch(setSliderHeightActionCreator(height));
+		},
+		setSliderData: data => {
+			dispatch(setSliderDataActionCreator(data))
 		}
 	}
 }

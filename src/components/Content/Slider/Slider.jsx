@@ -6,7 +6,7 @@ import styled from "styled-components";
 import SlideInfo from "./SlideInfo/SlideInfo";
 
 const Slider = ({sliders, sliderRef, height}) => {
-	const getSlides = sliders.map((slide, index) => {
+	const getSlides = Object.values(sliders).map((slide, index) => {
 		return (
 			<Slide key={slide.title + index} height={height} img={slide.img}>
 				<SlideInfo title={slide.title} text={slide.text} color={slide.color}/>
