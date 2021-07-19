@@ -1,13 +1,16 @@
 import React from "react";
 import arrow from "./../../../../commons/icons/order-navigation-arr.svg";
 import { NavLink } from "react-router-dom";
+import styled from "styled-components";
 
-const OrderNavigation = ({items}) => {
+const OrderNavigation = ({items, completed, orderNumber}) => {
 	const getNavigationItems = items.map((item, index, array) => {
+		let secondClass = item.completed ? 'completed' : null;
+		
 		return (
 			<React.Fragment key={item.id}>
 				<div className="order__navigation-item">
-					<NavLink to={`/order/${item.to}`} activeClassName="order__navigation-active">{item.title}</NavLink>
+					<NavLink to={`/order/${item.to}`} activeClassName="order__navigation-active" className={secondClass}>{item.title}</NavLink>
 				</div>
 				{
 					index === array.length - 1 ||
@@ -21,10 +24,18 @@ const OrderNavigation = ({items}) => {
 	return (
 		<div className="order__navigation">
 			<div className="order__navigation-border">
-				{getNavigationItems}
+				{
+					completed ? <CompletedOrderNumber>{`Заказ номер ${orderNumber}`}</CompletedOrderNumber>
+					: getNavigationItems
+				}
 			</div>
 		</div>
 	)
 }
+
+const CompletedOrderNumber = styled.span`
+	font-weight: 700;
+	font-size: 14px;
+`
 
 export default OrderNavigation;

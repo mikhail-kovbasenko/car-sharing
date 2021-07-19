@@ -63,6 +63,11 @@
 				font-size: 14px;
 				font-weight: 700;
 				color: #999;
+				pointer-events: none;
+				&.completed {
+					color: black;
+					pointer-events: all;
+				}
 				@include beforeDesktopMax() {
 					font-size: 12px;
 				}
@@ -71,8 +76,8 @@
 				}
 			}
 		}
-		&-active {
-			color: #0EC261 !important;
+		&  .order__navigation-active {
+				color: #0EC261 !important;
 		}
 	}
 	&__content {

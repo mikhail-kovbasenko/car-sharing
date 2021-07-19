@@ -8,18 +8,18 @@ const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
 
 	useLayoutEffect(() => {
 		if(sliderContentRef.current) {
-			setSliderHeight(sliderContentRef.current.offsetHeight)
+			setSliderHeight(sliderContentRef.current.offsetHeight);
+
+			const onResize = window.addEventListener('resize', () => {
+				const currentSliderHeight = sliderContentRef.current.offsetHeight;
+	
+				setSliderHeight(currentSliderHeight);
+			})
+	
+			return () => window.removeEventListener('resize', onResize);
 		}
 	}, [])
-	useLayoutEffect(() => {
-		const onResize = window.addEventListener('resize', () => {
-			const currentSliderHeight = sliderContentRef.current.offsetHeight;
 
-			setSliderHeight(currentSliderHeight);
-		})
-
-		return () => window.removeEventListener('resize', onResize);
-	}, [])
 
 	return <Slider sliders={sliders} sliderRef={sliderContentRef} height={sliderHeight}/>
 }

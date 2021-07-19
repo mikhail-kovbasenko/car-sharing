@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { Switch, Route, withRouter } from 'react-router';
 import ModelContainer from './Model/ModelContainer';
 import ExtraContainer from './Extra/ExtraContainer';
-import Total from './Total/Total';
 import LocationContainer from './Location/LocationContainer';
+import TotalContainer from './Total/TotalContainer';
 
 const OrderContent = ({history}) => {
 	useEffect(() => {
@@ -19,7 +19,7 @@ const OrderContent = ({history}) => {
 				<Route path="/order/location" component={LocationContainer} />
 				<Route path="/order/model" component={ModelContainer}/>
 				<Route path="/order/extra" component={ExtraContainer}/>
-				<Route path="/order/total" component={Total}/>
+				<Route path="/order/total" component={TotalContainer}/>
 			</Switch>
 		</div>
 	)

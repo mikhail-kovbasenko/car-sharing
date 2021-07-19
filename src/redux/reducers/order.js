@@ -1,11 +1,11 @@
-import { CHECK_CAR_MODEL, SET_CITY_VALUE, SET_PICKUP_VALUE } from "../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW } from "../types";
 
 const initialState = {
 	navItems: [
-		{id: 1, title: 'Местоположение', to: 'location', visited: false},
-		{id: 2, title: 'Модель', to: 'model', visited: false},
-		{id: 3, title: 'Дополнительно', to: 'extra', visited: false},
-		{id: 4, title: 'Итого', to: 'total', visited: false}
+		{id: 1, title: 'Местоположение', to: 'location', completed: false, nextPage: 2},
+		{id: 2, title: 'Модель', to: 'model', completed: false, nextPage: 3},
+		{id: 3, title: 'Дополнительно', to: 'extra', completed: false, nextPage: 4},
+		{id: 4, title: 'Итого', to: 'total', completed: false, nextPage: null}
 	],
 	locationData: {
 		cityList: [
@@ -50,26 +50,23 @@ const initialState = {
 			{id: 7, src: 'image 3.jpg', alt: 'image_3', title: 'CRETA', min: 12000, max: 25000},
 			{id: 8, src: 'image 4.jpg', alt: 'image_4', title: 'SONATA', min: 10000, max: 32000}
 		],
-		filterModels: 0,
+		filterModelsValue: 0,
 		checkedModel: false,
 		completed: false
 	},
 	extraData: {
-		color: 0,
-		rate: 0,
-		rentFrom: null,
-		rentTo: null,
+		color: 'Любой',
+		rate: 'Поминутно',
+		rentFrom: '',
+		rentTo: '',
 		fuel: false,
 		babyChair: false,
 		rightHandDrive: false,
 		completed: false
-	}
-}
-
-const checkCompletedLocationData = (data) => {
-	if(data.city !== '' && data.pickUpPoint !== '') return true;
-
-	return false;
+	},
+	isModalWindowOpen: false,
+	completed: false,
+	orderNumber: 'RU58491823'
 }
 
 const order = (state = initialState, action) => {
@@ -100,20 +97,159 @@ const order = (state = initialState, action) => {
 
 			return editedState;
 		}
+		case CHECK_COMPLETED_LOCATION_DATA: {
+			const cityValue = state.locationData.city;
+			const pickUpPointValue = state.locationData.pickUpPoint;
+			let completed = false;
+
+			if(cityValue !== "" && pickUpPointValue !== "") completed = true;
+
+			return {
+				...state,
+				locationData: {
+					...state.locationData,
+					completed
+				}
+			}
+
+		}
 		case CHECK_CAR_MODEL: {
 			return {
 				...state,
 				modelData: {
 					...state.modelData,
 					checkedModel: action.data.id,
-					completed: true
 				}
+			}
+		}
+		case SET_COMPLETE_PAGE: {
+			const editedNavItems = state.navItems.map(item => {
+				if(item.id !== action.data.id) return item;
+
+				item.completed = true;
+
+				return item;
+			})
+			return {
+				...state,
+				navItems: editedNavItems
+			}
+		}
+		case CHANGE_MODELS_FILTER: {
+			return {
+				...state,
+				modelData: {
+					...state.modelData,
+					filterModelsValue: action.data.value
+				}
+			}
+		}
+		case CHANGE_COLOR_MODEL: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					color: action.data.value
+				}
+			}
+		}
+		case CHANGE_RATE: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					rate: action.data.value
+				}
+			}
+		}
+		case CHECK_FUEL: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					fuel: action.data.bool
+				}
+			}
+		}
+		case CHECK_BABYCHAIR: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					babyChair: action.data.bool
+				}
+			}
+		}
+		case CHECK_RIGHT_HAND_DRIVE: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					rightHandDrive: action.data.bool
+				}
+			}
+		}
+		case SET_RENT_FROM: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					rentFrom: action.data.value
+				}
+			}
+		}
+		case SET_RENT_TO: {
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					rentTo: action.data.value
+				}
+			}
+		}
+		case CHECK_COMPLETED_MODEL_DATA: {
+			let completed = false;
+
+			if(state.modelData.checkedModel) completed = true;
+
+			return {
+				...state,
+				modelData: {
+					...state.modelData,
+					completed
+
+				}
+			}
+		}
+		case CHECK_COMPLETED_EXTRA_DATA: {
+			let completed = false;
+			const {rentFrom, rentTo} = state.extraData;
+
+			if(rentFrom !== '' && rentTo !== '') completed = true;
+
+			return {
+				...state,
+				extraData: {
+					...state.extraData,
+					completed
+				}
+			}
+		}
+		case TOGGLE_MODAL_WINDOW: {
+			return {
+				...state,
+				isModalWindowOpen: !state.isModalWindowOpen
+			}
+		}
+		case CONFIRM_ORDER: {
+			return {
+				...state,
+				completed: true
 			}
 		}
 		default: return state;
 	}
 }
-
 
 export const setCityValueActionCreator = value => ({
 	type: SET_CITY_VALUE,
@@ -123,11 +259,59 @@ export const setPickUpValueActionCreator = value => ({
 	type: SET_PICKUP_VALUE,
 	data: {value}
 })
+export const checkCompletedLocationData = () => ({
+	type: CHECK_COMPLETED_LOCATION_DATA,
+})
 export const checkCarModelActionCreator = id => ({
 	type: CHECK_CAR_MODEL,
 	data: {id}
 })
-
+export const setCompletePageActionCreator = id => ({
+	type: SET_COMPLETE_PAGE,
+	data: {id}
+})
+export const changeModelsFilterActionCreator = value => ({
+	type: CHANGE_MODELS_FILTER,
+	data: {value}
+})
+export const changeColorModelActionCreator = value => ({
+	type: CHANGE_COLOR_MODEL,
+	data: {value}
+})
+export const changeRateActionCreator = value => ({
+	type: CHANGE_RATE,
+	data: {value}
+})
+export const checkFuelActionCreator = bool => ({
+	type: CHECK_FUEL,
+	data: {bool}
+})
+export const checkBabyChairActionCreator = bool => ({
+	type: CHECK_BABYCHAIR,
+	data: {bool}
+})
+export const checkRightHandDriveActionCreator = bool => ({
+	type: CHECK_RIGHT_HAND_DRIVE,
+	data: {bool}
+})
+export const setRentFromActionCreator = value => ({
+	type: SET_RENT_FROM,
+	data: {value}
+})
+export const setRentToActionCreator = value => ({
+	type: SET_RENT_TO,
+	data: {value}
+})
+export const checkCompletedModelData = () => ({
+	type: CHECK_COMPLETED_MODEL_DATA
+})
+export const checkCompletedExtraData = () => ({
+	type: CHECK_COMPLETED_EXTRA_DATA
+})
+export const toggleModalWindowStateActionCreator = () => ({
+	type: TOGGLE_MODAL_WINDOW,
+})
+export const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
 
 
 export default order;

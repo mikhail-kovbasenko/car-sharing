@@ -65,6 +65,12 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 		background: linear-gradient(90deg, #076432 2.61%, #013C27 112.6%);
 	}
 }
+.button-2 {
+	background: linear-gradient(90deg, #493013 0%, #7B0C3B 100%);
+	&:hover {
+		background: linear-gradient(90deg, #5a4730 0%, #893156 100%);
+	}
+}
 .disabled{
 	pointer-events: none;
 	background: #eee;

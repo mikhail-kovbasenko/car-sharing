@@ -44,8 +44,8 @@
 	}
 
 	&__fuel {
+		display: flex;
 		@include beforeTablet() {
-			display: flex;
 			flex-direction: column;
 		}
 	}

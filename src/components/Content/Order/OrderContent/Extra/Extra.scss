@@ -80,11 +80,48 @@
 			}
 			&-element {
 				
-		
+				&-cross {
+					position: relative;
+					right: 10px;
+					display: none;
+					&:hover {
+						cursor: pointer;
+						color: red;
+					}
+				}
+				& > input:valid ~ &-cross {
+					display: inline;
+				}
 				& > input {
 					border-bottom: 1px solid #999;
 					padding: 3px;
 					width: 224px;
+					color: #fff;				
+					position: relative;
+					&::-webkit-calendar-picker-indicator {
+						background: transparent;						
+						color: transparent;
+						cursor: pointer;
+						height: auto;		
+						position: absolute;
+						width: 100%;
+						top: 0;
+						bottom: 0;
+						left: -100px;
+						right: 0;
+						width: auto;
+					}
+					&::before {
+						content: attr(placeholder);
+						position: absolute;
+						color: #999;
+					}
+					&:focus, &:valid {
+						color: #121212;
+					}
+					&:focus::before, &:valid::before {
+						content: '';
+					}
 					&::placeholder {
 						@include beforeTablet() {
 							font-size: 12px;
@@ -120,8 +157,10 @@
 			}
 			&-element {
 				margin-bottom: 8px;
+				
 				& > input {
 					margin-right: 5px;
+					cursor: pointer;
 				}
 			}
 		}

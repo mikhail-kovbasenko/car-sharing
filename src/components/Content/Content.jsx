@@ -3,7 +3,7 @@ import Main from './Main/Main';
 import SliderContainer from './Slider/SliderContainer';
 import { Route, Switch } from 'react-router';
 import React from 'react';
-import OrderContainer from './Order/OrderContainer';
+import Order from './Order/Order';
 
 const Content = () => {
 	const getMainPage = () => {
@@ -18,7 +18,7 @@ const Content = () => {
 		<div className="content">
 			<Switch>
 				<Route exact path="/" render={getMainPage}/>
-				<Route path="/order" component={OrderContainer}/>
+				<Route path="/order" component={Order}/>
 			</Switch>
 		</div>
 	)

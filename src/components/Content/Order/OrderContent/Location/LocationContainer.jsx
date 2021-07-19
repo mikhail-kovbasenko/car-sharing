@@ -1,12 +1,15 @@
+import { useEffect } from "react";
 import { connect } from "react-redux"
-import { setCityValueActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order";
+import { checkCompletedLocationData, setCityValueActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order";
 import Location from './Location';
 
-const LocationContainer = ({data, setCityValue, setPickupValue}) => {
+const LocationContainer = ({data, setCityValue, setPickupValue, checkLocationPageComplete}) => {
 	let {city, pickUpPoint} = data;
 
 	const onChangeCity = event => setCityValue(event.target.value);
 	const onChangePickUp = event => setPickupValue(event.target.value);
+
+	useEffect(() => checkLocationPageComplete(), [city, pickUpPoint]);
 
 	return <Location city={city}
 					     pickUp={pickUpPoint}
@@ -25,6 +28,9 @@ const mapDispatchToProps = dispatch => {
 		},
 		setPickupValue: value => {
 			dispatch(setPickUpValueActionCreator(value))
+		},
+		checkLocationPageComplete: () => {
+			dispatch(checkCompletedLocationData());
 		}
 	}
 }

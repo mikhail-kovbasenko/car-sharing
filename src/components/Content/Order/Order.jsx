@@ -1,15 +1,15 @@
 import './Order.scss';
 import Header from '../../../commons/Header/Header';
-import OrderNavigation from './OrderNavigation/OrderNavigation';
 import OrderTotalContainer from './OrderTotal/OrderTotalContainer';
 import OrderContent from './OrderContent/OrderContent';
+import OrderNavigationContainer from './OrderNavigation/OrderNavigationContainer';
 
-const Order = ({navItems}) => {
+const Order = () => {
 	return (
 		<div className="order">
 			<div className="order__container">
 				<Header/>
-				<OrderNavigation items={navItems}/>
+				<OrderNavigationContainer/>
 				<div className="order__content">
 					<OrderContent/>
 					<OrderTotalContainer/>
