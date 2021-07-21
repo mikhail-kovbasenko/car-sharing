@@ -1,6 +1,9 @@
 import "./Location.scss";
 
-const Location = ({city, pickUp, onChangeCity, onChangePickUp}) => {
+const Location = ({city, pickUp, cityList, onChangeCity, onChangePickUp, onInputCityField, inputCityRef, onInputPickUpField, pickUpPointListForInput}) => {
+	const getCityList = cityList.map(city => <option value={city.name} key={city.id}/>);
+	const getPickUpList = pickUpPointListForInput.map(item => <option value={`${item.name}, ${item.city_id}`} key={item.id} data-city={item.city_id}/>);
+	
 	return (
 		<div className="location">
 			<div className="location__container">
@@ -14,13 +17,26 @@ const Location = ({city, pickUp, onChangeCity, onChangePickUp}) => {
 							<input type="text" placeholder="Начните вводить город" 
 													 value={city}
 													 onChange={onChangeCity}
+													 list="city-list"	 
+													 onInput={onInputCityField}
+													 ref={inputCityRef}
 												/>
+							<datalist id="city-list">
+								{getCityList}
+							</datalist>
 						</div>
 						<div className="location__element">
 							<input type="text" placeholder="Начните вводить пункт выдачи"
 													 value={pickUp}
-													 onChange={onChangePickUp}
+													 list="pick-up-list"
+													 onChange={onChangePickUp} 
+													 onInput={onInputPickUpField}
+													 list="pickup-list"
 												/>
+							<datalist id="pickup-list">
+								{getPickUpList}
+							</datalist>
+
 						</div>
 					</div>
 				</div>

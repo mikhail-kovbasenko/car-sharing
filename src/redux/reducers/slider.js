@@ -29,7 +29,6 @@ const initialState = {
 		},
 	},
 	sliderHeight: 0,
-	
 }
 
 const slider = (state = initialState, action) => {

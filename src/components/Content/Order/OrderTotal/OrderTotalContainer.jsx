@@ -20,10 +20,12 @@ const OrderTotalContainer = ({
 	rentFrom,
 	isModalOpen,
 	toggleModal,
+	city,
+	pickUp,
 	completed
 }) => {
 	const model = carModels.find(item => item.id === checkedModel);
-	
+
 	const renderNextButton = (text, to, id) => {
 		let defaultClass = 'button'
 		let secondClass = id ? 'disabled' : null;
@@ -58,9 +60,11 @@ const OrderTotalContainer = ({
 
 		return dateStr;
 	}
+	const address = `${city}, ${pickUp.slice(0, pickUp.lastIndexOf(','))}`;
 
 	return <OrderTotal renderBtn={renderNextButton}
 		 				    navItems={navItems}
+							 locationData={{address, locationCompleted}}
 							 modelData={{model, modelCompleted}}  
 							 extraData={{color, rate, babyChair, fuel, rightDrive, extraCompleted}}
 							 toggleModal={toggleModal}
@@ -86,6 +90,8 @@ const mapStateToProps = state => ({
 	rentFrom: state.order.extraData.rentFrom,
 	rightDrive: state.order.extraData.rightHandDrive,
 	isModalOpen: state.order.isModalWindowOpen,
+	city: state.order.locationData.city,
+	pickUp: state.order.locationData.pickUpPoint,
 	completed: state.order.completed
 })
 

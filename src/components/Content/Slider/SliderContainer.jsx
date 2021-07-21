@@ -8,6 +8,7 @@ const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
 
 	useLayoutEffect(() => {
 		if(sliderContentRef.current) {
+			
 			setSliderHeight(sliderContentRef.current.offsetHeight);
 
 			const onResize = window.addEventListener('resize', () => {

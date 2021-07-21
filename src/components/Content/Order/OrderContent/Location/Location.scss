@@ -71,8 +71,11 @@
 			@include beforeTablet() {
 				font-size: 10px;
 			}
-			
+			&::-webkit-calendar-picker-indicator {
+				display: none;
+			}
 		}
+		& datalist {display: none;}
 	}
 	&__map {
 		display: flex;

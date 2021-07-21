@@ -16,3 +16,4 @@ export const CHECK_COMPLETED_MODEL_DATA = 'check-completed-model-data';
 export const CHECK_COMPLETED_EXTRA_DATA = 'check-completed-extra-data';
 export const TOGGLE_MODAL_WINDOW = 'toggle-modal-window';
 export const CONFIRM_ORDER = 'confirm-order';
+export const SET_PICKUP_DATA_FOR_INPUT = 'set-pickup-data-for-input';

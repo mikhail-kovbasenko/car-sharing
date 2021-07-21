@@ -4,7 +4,7 @@ import nextId from 'react-id-generator';
 import reactDom from "react-dom";
 import ModalWindow from "../../../../commons/ModalWindow/ModalWindow";
 
-const OrderTotal = ({renderBtn, navItems, modelData, extraData, isModalOpen, toggleModal, rentFrom, rentTo, calculateRent}) => {
+const OrderTotal = ({renderBtn, navItems, modelData, extraData, isModalOpen, locationData, toggleModal, rentFrom, rentTo, calculateRent}) => {
 	const getTotalInfoItem = data => {
 		return (
 			<div className="order__total-info-item">
@@ -18,12 +18,11 @@ const OrderTotal = ({renderBtn, navItems, modelData, extraData, isModalOpen, tog
 		<div className="order__total">
 			<div className="order__total-title">Ваш заказ:</div>
 			<div className="order__total-info">
-				<div className="order__total-info-item">
-					<div className="order__total-info-title">Пункт выдачи</div>
-					<div className="order__total-info-points">......................</div>
-					<div className="order__total-info-result">Ульяновск,Нариманова 42</div>
-				</div>
-				
+				{
+					locationData.locationCompleted
+					? getTotalInfoItem({title: 'Пункт выдачи', result: locationData.address})
+					: null
+				}
 				{
 					modelData.model && modelData.modelCompleted
 					? getTotalInfoItem({title: 'Модель', result: modelData.model.title})

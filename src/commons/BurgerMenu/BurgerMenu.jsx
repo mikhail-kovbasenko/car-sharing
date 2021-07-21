@@ -11,13 +11,17 @@ const BurgerMenu = ({ items }) => {
 	const getMenuItems = items.map((item, index) => <a href="#" className="menu-item" key={index}>{item}</a>);
 	const MenuRef = useRef();
 	const getWidth = num => window.innerWidth / num;
-	const changeMenuSize = width => MenuRef.current.querySelector('.bm-menu').style.width = width + 'px';
+	const changeMenuSize = width => {
+		if(!MenuRef.current) return;
+		
+		MenuRef.current.querySelector('.bm-menu').style.width = width + 'px';
+	} 
 
 	useLayoutEffect(() => {
 		if(MenuRef.current) changeMenuSize(getWidth(1.9));
 	}, []);
-	useEffect(() => {
-	
+	useLayoutEffect(() => {
+		
 		const onResize = window.addEventListener('resize', () => {
 			let num = 0;
 			const windowWidth = window.innerWidth;
