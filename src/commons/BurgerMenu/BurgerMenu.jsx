@@ -3,7 +3,6 @@ import telegram from './../icons/menu-icons/telegram.svg';
 import instagram from './../icons/menu-icons/instagram.svg';
 import facebook from './../icons/menu-icons/facebook.svg';
 import './BurgerMenu.scss';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useLayoutEffect } from 'react';
 

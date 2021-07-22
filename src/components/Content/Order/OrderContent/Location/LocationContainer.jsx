@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { connect } from "react-redux"
-import { checkCompletedLocationData, setCityValueActionCreator, setPickUpListForInputActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order";
+import { checkCompletedLocationData, setCityValueActionCreator, setPickUpListForInputActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order-reducer/order-action-creators";
 import Location from './Location';
 
 const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPageComplete, setPickUpPointForInput }) => {

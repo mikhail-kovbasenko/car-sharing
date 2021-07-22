@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
-import { confirmOrderActionCreator, toggleModalWindowStateActionCreator } from '../../redux/reducers/order';
+import { confirmOrderActionCreator, toggleModalWindowStateActionCreator } from '../../redux/reducers/order-reducer/order-action-creators';
 import './ModalWindow.scss';
 
 const ModalWindow = ({toggleModal}) => {

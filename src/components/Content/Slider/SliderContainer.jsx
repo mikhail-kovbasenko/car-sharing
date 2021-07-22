@@ -1,14 +1,15 @@
 import { useRef, useLayoutEffect } from "react";
 import { connect } from "react-redux"
+import { orderAPI } from "../../../api/api";
 import { setSliderHeightActionCreator } from "../../../redux/reducers/slider"
 import Slider from "./Slider";
 
 const SliderContainer = ({sliders, sliderHeight, setSliderHeight}) => {
 	const sliderContentRef = useRef();
-
+	
 	useLayoutEffect(() => {
 		if(sliderContentRef.current) {
-			
+			orderAPI.getCars();
 			setSliderHeight(sliderContentRef.current.offsetHeight);
 
 			const onResize = window.addEventListener('resize', () => {

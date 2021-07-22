@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { changeColorModelActionCreator, changeRateActionCreator, checkBabyChairActionCreator, checkCompletedExtraData, checkFuelActionCreator, checkRightHandDriveActionCreator, setRentFromActionCreator, setRentToActionCreator } from "../../../../../redux/reducers/order";
+import { changeColorModelActionCreator, changeRateActionCreator, checkBabyChairActionCreator, checkCompletedExtraData, checkFuelActionCreator, checkRightHandDriveActionCreator, setRentFromActionCreator, setRentToActionCreator } from "../../../../../redux/reducers/order-reducer/order-action-creators";
 import Extra from "./Extra"
 
 const ExtraContainer = ({

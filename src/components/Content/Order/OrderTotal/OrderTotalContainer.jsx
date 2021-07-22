@@ -1,6 +1,6 @@
 import { connect } from "react-redux"
 import { NavLink } from "react-router-dom"
-import { setCompletePageActionCreator, toggleModalWindowStateActionCreator } from "../../../../redux/reducers/order"
+import { setCompletePageActionCreator, toggleModalWindowStateActionCreator } from "../../../../redux/reducers/order-reducer/order-action-creators"
 import OrderTotal from "./OrderTotal"
 
 const OrderTotalContainer = ({
