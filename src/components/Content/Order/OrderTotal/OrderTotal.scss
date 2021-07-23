@@ -1,11 +1,12 @@
 @import "./../../../../styles/media.scss";
+@import "./../../../../styles/colors.scss";
 
 .order {
 	&__total {
 		position: relative;
 		display: flex;
 		flex-direction: column;
-		border-left: 1px solid #eee;
+		border-left: 1px solid $lightGreyColor;
 		@include beforeTabletMax() {
 			border-left: none;
 		}
@@ -30,7 +31,6 @@
 			display: flex;
 			align-self: center;
 		}
-
 	}
 	&__total-info {
 		font-weight: 300;
@@ -40,12 +40,10 @@
 		margin-bottom: 32px;
 		@include beforeDesktopMax() {
 			font-size: 10px;
-			//justify-content: space-between;
 		}
 		@include beforeTablet() {
 			font-size: 8px;
-		}
-	
+		}	
 		&-item {
 			display: flex;
 			justify-content: space-between;
@@ -62,22 +60,19 @@
 				}
 			}
 		}
-		&-title {
-			
-		}
 		&-points {
-			color: #999;
+			color: $greyColor;
 			margin: 0 5px;
 			flex-grow: 1;
-			position: relative;
 			overflow: hidden;
-			&:after {
-				content: '..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................';
-				white-space: nowrap;
+			position: relative;
+			&__item {
+				width: 100%;
+				height: 100%;
 				position: absolute;
+				display: flex;
 			}
 		}
-		&-result {}
 	}
 	&__total-price {
 		font-weight: 400;

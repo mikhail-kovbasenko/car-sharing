@@ -1,12 +1,13 @@
 @import './../../../../../styles/custom-checkbox.scss';
 @import './../../../../../styles/media.scss';
+@import './../../../../../styles/colors.scss';
 
 .extra {
 	height: 100%;
-	font-size: 14px !important;
-	font-weight: 300 !important;
+	font-size: 14px;
+	font-weight: 300;
 	@include beforeTablet() {
-		font-size: 12px !important;
+		font-size: 12px;
 	}
 	&__content {
 		display: flex;
@@ -24,33 +25,22 @@
 		@include size525() {
 			flex-direction: column;
 			align-items: center;
-			font-size: 10px !important;
+			font-size: 10px;
 		}
 		& > div {
 			@include beforeTablet() {
 				width: 50%;
 			}
-
-			
 		}
 		& .control-group {
 			@include tablet() {
 				flex-direction: column;
 			}
-
 		}
 	}
-
 	&__color {
 		margin-bottom: 32px;
-		&-group {
-		
-		}
-		@include size525() {
-
-		}
 	}
-
 	&__date {
 		margin-bottom: 32px;
 		&-group {
@@ -59,7 +49,6 @@
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
-				
 				& > div {
 					display: flex;
 					justify-content: space-between;
@@ -93,10 +82,10 @@
 					display: inline;
 				}
 				& > input {
-					border-bottom: 1px solid #999;
+					border-bottom: 1px solid $greyColor;
 					padding: 3px;
 					width: 224px;
-					color: #fff;				
+					color: $whiteColor;				
 					position: relative;
 					&::-webkit-calendar-picker-indicator {
 						background: transparent;						
@@ -114,7 +103,7 @@
 					&::before {
 						content: attr(placeholder);
 						position: absolute;
-						color: #999;
+						color: $greyColor
 					}
 					&:focus, &:valid {
 						color: #121212;

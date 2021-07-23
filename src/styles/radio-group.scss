@@ -1,3 +1,5 @@
+@import './colors.scss';
+
 .control-group {
 	display: flex;
 }
@@ -32,8 +34,8 @@
 	left: 0;
 	height: 12px;
 	width: 12px;
-	background: #e6e6e6;
-	border: 0px solid #0EC261;
+	background: $controlGreyIndicator;
+	border: 0px solid $greenColor;
 }
 .control:hover input ~ .control_indicator,
 .control input:focus ~ .control_indicator {
@@ -41,14 +43,14 @@
 }
 
 .control input:checked ~ .control_indicator {
-	background: #0EC261;
+	background: $greenColor;
 }
 .control:hover input:not([disabled]):checked ~ .control_indicator,
 .control input:checked:focus ~ .control_indicator {
-	background: #0EC261;
+	background: $greenColor;
 }
 .control input:disabled ~ .control_indicator {
-	background: #e6e6e6;
+	background: $controlGreyIndicator;
 	opacity: 0.6;
 	pointer-events: none;
 }
@@ -62,7 +64,7 @@
 	display: block;
 }
 .control input:checked {
-	color: #999;
+	color: $greyColor;
 }
 .control-radio .control_indicator {
 	border-radius: 50%;
@@ -74,7 +76,7 @@
 	height: 6px;
 	width: 6px;
 	border-radius: 50%;
-	background: #ffffff;
+	background: $whiteColor;
 }
 .control-radio input:disabled ~ .control_indicator:after {
 	background: #7b7b7b;
@@ -88,7 +90,7 @@
 	height: 3rem;
 	margin-left: -1.1rem;
 	margin-top: -1rem;
-	background: #0EC261;
+	background: $greenColor;
 	border-radius: 3rem;
 	opacity: 0.6;
 	z-index: 99999;

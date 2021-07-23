@@ -56,7 +56,7 @@ const OrderTotalContainer = ({
 		const minutes = Math.floor(delta / 60) % 60;
 		delta -= minutes * 60;
 
-		const dateStr = `${fullDays} д. ${hours} ч. ${minutes} мин.	`;
+		const dateStr = `${fullDays} д. ${hours} ч. ${minutes} мин.`;
 
 		return dateStr;
 	}

@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const Main = () => {
 	return (
-		<div className="main">
+		<main className="main">
 			<div className="main__content">
 				<div className="main__content_section">
 					<Header/>
@@ -28,7 +28,7 @@ const Main = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	)
 }
 

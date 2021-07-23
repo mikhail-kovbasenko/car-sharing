@@ -1,5 +1,5 @@
 import React from "react";
-import arrow from "./../../../../commons/icons/order-navigation-arr.svg";
+import arrow from "./../../../../commons/icons/order-navigation-icons/order-navigation-arr.svg";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
