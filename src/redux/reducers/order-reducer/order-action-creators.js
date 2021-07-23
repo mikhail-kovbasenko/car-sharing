@@ -74,6 +74,7 @@ const setCarModelActionCreator = data => ({
 export const getCarsList = limit => dispatch => {
 	orderAPI.getCars(limit).then(response => {
 		if(response.status === 200) {
+			console.log(response.data.data);
 			dispatch(setCarModelActionCreator(response.data.data));
 		}
 	})
