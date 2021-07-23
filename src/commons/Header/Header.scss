@@ -2,7 +2,6 @@
 @import './../../styles/colors.scss';
 
 .header {
-	font-family: Roboto;
 	margin-bottom: 163px;
 	@include desktopMin() {margin-bottom: 100px;}
 	@include tablet() {margin-bottom: 50px;}

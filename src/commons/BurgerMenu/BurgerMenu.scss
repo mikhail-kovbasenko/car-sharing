@@ -1,3 +1,6 @@
+@import './../../styles/colors.scss';
+@import './../../styles/media.scss';
+
 .bm-burger-button {
 	position: fixed;
 	width: 36px;
@@ -8,27 +11,27 @@
  }
 
  .bm-burger-bars {
-	background: #fff;
-	@media (max-width: 768px) {
+	background: $whiteColor;
+	@include beforeTablet() {
 		background-color:#121212;
 	}
 	
  }
  
  .bm-burger-bars-hover {
-	background: #0EC261ed;
+	background: $greenColor;
  }
  
- .bm-cross-button {
+ .bm-menu-wrap .bm-cross-button {
 	width: 24px;
 	height: 24px;
-	position: absolute !important;
-	left: 24px !important;
-	top: 40px !important;
+	position: absolute;
+	left: 24px;
+	top: 40px;
 }
  
  .bm-cross {
-	background-color: #fff;
+	background-color: $whiteColor;
  }
 
  .bm-menu-wrap {
@@ -37,14 +40,14 @@
  }
  
  .bm-menu {
-	background: #373a47;
+	background: $burgerMenuColor;
 	font-size: 1.15em;
-	background-color: #111518;
+	background-color: $burgerMenuColor-2;
 	font-family: Roboto;
  }
  
  .bm-morph-shape {
-	fill: #373a47;
+	fill: $burgerMenuColor;
  }
  
  .bm-item-list {
@@ -55,33 +58,34 @@
 	}
  }
 
- .bm-overlay {
-	background: rgba(21, 27, 31, 0.81) !important;
+.bm-overlay {
+	background-color: $burgerMenuColor-2 !important;
+	opacity: 0.81 !important;
  }
- .bm-wrapper {
+.bm-wrapper {
 	 display: flex !important;
-	 flex-direction: column !important;
+	 flex-direction: column;
 	 margin-bottom: 38px;
 	 font-size: 32px;
 	 font-weight: 500;
-	 color: #fff;
-	 @media (min-width: 768px) and (max-width: 1023px) {
+	 color: $whiteColor;
+	 @include tablet() {
 		 font-size: 28px;
 	 }
-	 @media (max-width: 767px) {
+	 @include beforeTablet() {
 		 font-size: 22px;
 	 }
 	 & > a {
-		 color: #fff;
+		 color: $whiteColor;
 		 margin-bottom: 20px;
 		 text-transform: uppercase;
-	 }
-	 & > a:last-of-type {
-		 margin-bottom: 38px;
-	 }
-	 & > a:hover {
-		 color: #0EC261ed;
-		 transition: color 0.2s;
+		 &:last-of-type {
+			 margin-bottom: 38px;
+		 }
+		 &:hover {
+			color: $greenColor;
+		 	transition: color 0.2s;
+		 }
 	 }
 	 &-icons {
 		 & > a {
@@ -91,11 +95,11 @@
 	 }
 	 &-lang {
 		 display: none;
-		 color: #0EC261;
+		 color: $greenColor;
 		 font-size: 13px;
 		 position: absolute;
 		 bottom: 28px;
-		 @media (max-width: 767px) {
+		 @include beforeTablet() {
 			 display: block;
 		 }
 	 }

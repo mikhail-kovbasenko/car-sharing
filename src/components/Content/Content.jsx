@@ -1,23 +1,14 @@
 import './Content.scss';
-import Main from './Main/Main';
-import SliderContainer from './Slider/SliderContainer';
 import { Route, Switch } from 'react-router';
 import React from 'react';
 import Order from './Order/Order';
+import MainPage from './MainPage';
 
 const Content = () => {
-	const getMainPage = () => {
-		return (
-			<React.Fragment>
-				<Main/>
-				<SliderContainer/>
-			</React.Fragment>
-		)
-	}
 	return (
 		<div className="content">
 			<Switch>
-				<Route exact path="/" render={getMainPage}/>
+				<Route exact path="/" render={MainPage}/>
 				<Route path="/order" component={Order}/>
 			</Switch>
 		</div>

@@ -6,9 +6,14 @@ import './BurgerMenu.scss';
 import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useLayoutEffect } from 'react';
+import nextId from 'react-id-generator';
 
 const BurgerMenu = ({ items }) => {
-	const getMenuItems = items.map((item, index) => <a href="#" className="menu-item" key={index}>{item}</a>);
+	const getMenuItems = items.map(item => {
+		const keyId = nextId();
+
+		return <a href="#" className="menu-item" key={keyId}>{item}</a>
+	})
 	const MenuRef = useRef();
 	const getWidth = num => window.innerWidth / num;
 	const changeMenuSize = width => MenuRef.current.querySelector('.bm-menu').style.width = width + 'px';
@@ -36,9 +41,9 @@ const BurgerMenu = ({ items }) => {
 				<div className="bm-wrapper" >
 					{getMenuItems}
 					<div className="bm-wrapper-icons">
-						<a href="#"><img src={telegram} alt=""/></a>
-						<a href="#"><img src={facebook} alt=""/></a>
-						<a href="#"><img src={instagram} alt=""/></a>
+						<a href="#"><img src={telegram} alt="telegram"/></a>
+						<a href="#"><img src={facebook} alt="facebook"/></a>
+						<a href="#"><img src={instagram} alt="instagram"/></a>
 					</div>
 					<div className="bm-wrapper-lang">
 						Eng

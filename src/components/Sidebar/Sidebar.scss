@@ -1,4 +1,5 @@
 @import './../../styles/media.scss';
+@import './../../styles/colors.scss';
 
 .sidebar {
 	background-color: #151B1F;
@@ -15,8 +16,7 @@
 		height: 100%;
 	}
 	&__item {
-		font-family: Roboto;
 		font-size: 13px;
-		color:#0EC261;
+		color: $greenColor;
 	}
 }

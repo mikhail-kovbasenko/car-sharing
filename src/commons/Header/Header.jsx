@@ -1,4 +1,4 @@
-import icon from './../icons/icon.svg'
+import icon from './../icons/header-icons/header-city-icon.svg'
 import './Header.scss';
 
 const Header = () => {

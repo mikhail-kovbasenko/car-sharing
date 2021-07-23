@@ -1,65 +1,23 @@
+@import './styles/reset.scss';
 @import './styles/fonts.scss';
+@import './styles/colors.scss';
 
-
-/*Обнуление*/
-*{
-	padding: 0;
-	margin: 0;
-	border: 0;
-}
-*,*:before,*:after{
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
-}
-:focus,:active{outline: none;}
-a:focus,a:active{outline: none;}
-
-nav,footer,header,aside{display: block;}
-
-html,body{
-	height: 100%;
-	width: 100%;
-	font-size: 100%;
-	line-height: 1;
-	font-size: 14px;
-	-ms-text-size-adjust: 100%;
-	-moz-text-size-adjust: 100%;
-	-webkit-text-size-adjust: 100%;
-}
-input,button,textarea{font-family:inherit;}
-
-input::-ms-clear{display: none;}
-button{cursor: pointer;}
-button::-moz-focus-inner {padding:0;border:0;}
-a, a:visited{text-decoration: none;}
-a:hover{text-decoration: none;}
-ul li{list-style: none;}
-img{vertical-align: top;}
-
-h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
-/*--------------------*/
-
-/* Scss variables */
-
-
-
-/* --- */
 .wrapper {
 	width: 100%;
 	height: 100%;
 	position: absolute;
 	display: flex;
+	font-family: Roboto;
 }
 .button {
-	background: linear-gradient(90deg, #0EC261 2.61%, #039F67 112.6%);
+	background: linear-gradient(90deg, $greenColor 2.61%, #039F67 112.6%);
 	background-blend-mode: darken;
 	border-radius: 8px;
-	color: #fff;
+	color: $whiteColor;
 	font-size: 18px;
 	font-weight: 500;
 	&:hover {
-		background: linear-gradient(90deg, #0B934A 2.61%, #026E47 112.6%);
+		background: linear-gradient(90deg, $greenColor 2.61%, #026E47 112.6%);
 	}
 	&:active {
 		background: linear-gradient(90deg, #076432 2.61%, #013C27 112.6%);
@@ -73,6 +31,6 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 }
 .disabled{
 	pointer-events: none;
-	background: #eee;
-	color: #fff;
+	background: $lightGreyColor;
+	color: $whiteColor;
 }

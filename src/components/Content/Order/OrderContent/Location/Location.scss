@@ -1,7 +1,7 @@
 @import './../../../../../styles/media.scss';
+@import './../../../../../styles/colors.scss';
 
 .location {
-	font-family: Roboto;
 	font-weight: 300;
 	font-size: 14px;
 	overflow: hidden;
@@ -22,7 +22,6 @@
 			flex-direction: column;
 			align-items: center;
 		}
-		
 	}
 	&__fields {
 		display: flex;
@@ -33,9 +32,6 @@
 		@include beforeTablet() {
 			width: 100%;
 			justify-content: center;
-			& > div {
-				
-			}
 		}
 	}
 	&__labels {
@@ -45,11 +41,7 @@
 		margin-right: 9px;
 		@include beforeTablet() {
 			display: none;
-		}
-		
-	}
-	&__elements {
-		
+		}	
 	}
 	&__label {
 		&:first-child {
@@ -63,7 +55,7 @@
 		}
 		& input {
 			width: 224px;
-			border-bottom: 1px solid #999;
+			border-bottom: 1px solid $greyColor;
 			padding: 0px 5px;
 			@include desktopMin() {
 				font-size: 12px;
@@ -71,7 +63,6 @@
 			@include beforeTablet() {
 				font-size: 10px;
 			}
-			
 		}
 	}
 	&__map {
@@ -99,7 +90,7 @@
 		&-item {
 			width: 736px;
 			height: 352px;
-			background-image: url(./map.jpg);
+			background-image: url(./../../../../../commons/icons/location-order-icons/map.jpg);
 			background-position: center center;
 			background-size: cover;
 			@include desktopMin() {

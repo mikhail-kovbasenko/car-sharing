@@ -1,4 +1,3 @@
-import MenuIcon from "../../commons/MenuIcon/MenuIcon";
 import BurgerMenu from "../../commons/BurgerMenu/BurgerMenu";
 import './Sidebar.scss';
 import React from "react";
