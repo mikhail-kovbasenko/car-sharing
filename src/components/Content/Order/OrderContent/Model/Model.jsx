@@ -1,3 +1,4 @@
+import Preloader from '../../../../../commons/Preloader/Preloader';
 import './Model.scss';
 import ModelItem from './ModelItem/ModelItem';
 

@@ -2,6 +2,7 @@ import Model from "./Model"
 import { connect } from "react-redux"
 import { changeModelsFilterActionCreator, checkCarModelActionCreator, checkCompletedModelData, getCarsList } from "../../../../../redux/reducers/order-reducer/order-action-creators"
 import { useEffect } from "react";
+import Preloader from "../../../../../commons/Preloader/Preloader";
 
 
 const ModelContainer = ({cars, checkedModel, checkCar, filterModelsValue, changeFilter, checkCompletedModel, carsE, getCars}) => {
@@ -10,14 +11,15 @@ const ModelContainer = ({cars, checkedModel, checkCar, filterModelsValue, change
 
 	useEffect(() => checkCompletedModel(), [checkedModel]);
 	useEffect(() => getCars(20), []);
-	console.log(carsE);
 
-	return <Model cars={cars} 
-				     clickOnCarModel={clickOnCarModel} 
-					  checkedModel={checkedModel}
-					  radioValue={filterModelsValue}
-					  changeRadioValue={changeRadioValue}
-					/>
+
+	return   <Model cars={cars} 
+						 clickOnCarModel={clickOnCarModel} 
+						 checkedModel={checkedModel}
+						 radioValue={filterModelsValue}
+						 changeRadioValue={changeRadioValue}
+		 			 />
+
 }
 
 const mapStateToProps = state => ({
