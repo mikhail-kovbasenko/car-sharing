@@ -1,0 +1,110 @@
+@import './../../../../../styles/media.scss';
+@import './../../../../../styles/colors.scss';
+
+.location {
+	font-weight: 300;
+	font-size: 14px;
+	overflow: hidden;
+	position: relative;
+	@include desktopMin() {
+		font-size: 12px;
+	}
+	@include beforeTablet() {
+		font-size: 10px;
+	}
+	&__container {
+		@include beforeTabletMax() {
+			display: flex;
+			justify-content: space-between;
+		}
+		@include beforeTablet() {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+	&__fields {
+		display: flex;
+		margin-bottom: 45px;
+		@include beforeTabletMax() {
+			width: 50%;
+		}
+		@include beforeTablet() {
+			width: 100%;
+			justify-content: center;
+		}
+	}
+	&__labels {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		margin-right: 9px;
+		@include beforeTablet() {
+			display: none;
+		}	
+	}
+	&__label {
+		&:first-child {
+			padding-top: 2px;
+			margin-bottom: 14px;
+		}
+	}
+	&__element {
+		&:first-child {
+			margin-bottom: 10px;
+		}
+		& input {
+			width: 224px;
+			border-bottom: 1px solid $greyColor;
+			padding: 0px 5px;
+			@include desktopMin() {
+				font-size: 12px;
+			}
+			@include beforeTablet() {
+				font-size: 10px;
+			}
+		}
+		& datalist {display: none;}
+	}
+	&__map {
+		display: flex;
+		flex-direction: column;
+		
+		@include beforeTabletMax() {
+			width: 50%;
+			align-items: flex-end;
+		}
+		@include beforeTablet() {
+			width: 100%;
+		}
+		&-title {
+			margin-bottom: 16px;
+			@include beforeTabletMax() {
+				margin-bottom: 8px;
+			}
+			@include beforeTablet() {
+				text-align: center;
+				display: flex;
+				align-self: center;
+			}
+		}
+		&-item {
+			width: 736px;
+			height: 352px;
+			background-image: url(./../../../../../commons/icons/location-order-icons/map.jpg);
+			background-position: center center;
+			background-size: cover;
+			@include desktopMin() {
+				width: 636px;
+			}
+			@include tablet() {
+				width: 336px;
+				height: 252px;
+			}
+			@include beforeTablet() {
+				width: 100%;
+				height: 252px;
+			}
+		}	
+	}
+}

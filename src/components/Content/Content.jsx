@@ -1,12 +1,16 @@
 import './Content.scss';
-import Main from './Main/Main';
-import SliderContainer from './Slider/SliderContainer';
+import { Route, Switch } from 'react-router';
+import React from 'react';
+import Order from './Order/Order';
+import MainPage from './MainPage';
 
 const Content = () => {
 	return (
 		<div className="content">
-			<Main/>
-			<SliderContainer/>
+			<Switch>
+				<Route exact path="/" render={MainPage}/>
+				<Route path="/order" component={Order}/>
+			</Switch>
 		</div>
 	)
 }

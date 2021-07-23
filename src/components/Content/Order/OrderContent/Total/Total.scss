@@ -1,0 +1,69 @@
+@import './../../../../../styles/media.scss';
+@import './../../../../../styles/colors.scss';
+
+.total {
+	font-size: 14px;
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+	@include beforeTabletMax() {
+		width: 100%;
+	}
+	@include beforeTablet() {
+		font-size: 10px;
+	}
+	&__content {
+		display: flex;
+		flex-direction: column;
+		font-weight: 400;
+		& > div:not(:last-child) {
+			margin-bottom: 8px;
+		}
+	}
+	&__model {
+		font-size: 18px;
+		@include beforeTablet() {
+			font-size: 14px;
+		}
+	}
+	&__number-block {
+		padding: 8px 4px;
+		border: 1px solid $greyColor;
+		border-radius: 4px;
+		display: inline-block;
+		@include beforeTablet() {
+			padding: 4px 2px;
+			border-radius: 2px;
+		}
+	}
+
+	&__fuel {
+		display: flex;
+		@include beforeTablet() {
+			flex-direction: column;
+		}
+	}
+
+	&__fuel-title {
+		font-weight: 700;
+		margin-right: 5px;
+	}
+
+	&__available {
+		@include beforeTablet() {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+	&__available-title {
+		font-weight: 700;
+		margin-right: 5px;
+	}
+	&__car {
+		& > img {
+			@include beforeTablet() {
+				width: 200px;
+			}
+		}
+	}
+}

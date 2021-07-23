@@ -3,21 +3,29 @@ import telegram from './../icons/menu-icons/telegram.svg';
 import instagram from './../icons/menu-icons/instagram.svg';
 import facebook from './../icons/menu-icons/facebook.svg';
 import './BurgerMenu.scss';
-import { useEffect } from 'react';
 import { useRef } from 'react';
 import { useLayoutEffect } from 'react';
+import nextId from 'react-id-generator';
 
 const BurgerMenu = ({ items }) => {
-	const getMenuItems = items.map((item, index) => <a href="#" className="menu-item" key={index}>{item}</a>);
+	const getMenuItems = items.map(item => {
+		const keyId = nextId();
+
+		return <a href="#" className="menu-item" key={keyId}>{item}</a>
+	})
 	const MenuRef = useRef();
 	const getWidth = num => window.innerWidth / num;
-	const changeMenuSize = width => MenuRef.current.querySelector('.bm-menu').style.width = width + 'px';
+	const changeMenuSize = width => {
+		if(!MenuRef.current) return;
+		
+		MenuRef.current.querySelector('.bm-menu').style.width = width + 'px';
+	} 
 
 	useLayoutEffect(() => {
 		if(MenuRef.current) changeMenuSize(getWidth(1.9));
 	}, []);
-	useEffect(() => {
-	
+	useLayoutEffect(() => {
+		
 		const onResize = window.addEventListener('resize', () => {
 			let num = 0;
 			const windowWidth = window.innerWidth;
@@ -36,9 +44,9 @@ const BurgerMenu = ({ items }) => {
 				<div className="bm-wrapper" >
 					{getMenuItems}
 					<div className="bm-wrapper-icons">
-						<img src={telegram} alt=""/>
-						<img src={facebook} alt="" />
-						<img src={instagram} alt="" />
+						<a href="#"><img src={telegram} alt="telegram"/></a>
+						<a href="#"><img src={facebook} alt="facebook"/></a>
+						<a href="#"><img src={instagram} alt="instagram"/></a>
 					</div>
 					<div className="bm-wrapper-lang">
 						Eng

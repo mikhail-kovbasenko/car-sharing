@@ -1,5 +1,6 @@
-import prev_arrow from './../../commons/icons/arrow-back.svg';
-import next_arrow from './../../commons/icons/arrow-forward.svg';
+import prev_arrow from './../../commons/icons/slider-icons/arrow-back.svg';
+import next_arrow from './../../commons/icons/slider-icons/arrow-forward.svg';
+import nextId from 'react-id-generator';
 import './carouselCustomize.scss';
 
 const indicatorStyle = {
@@ -12,18 +13,20 @@ const indicatorStyle = {
 }
 
 export const renderIndicator = (onClickHandler, isSelected, index) => {
+	const keyId = nextId();
+
 	if(isSelected) {
 		return <li
+			key={keyId}
 			style={{...indicatorStyle, backgroundColor: '#0EC261'}}
 		/>
 	}
 	return <li
 			style={indicatorStyle}
-			key={index}
+			key={keyId}
 			onClick={onClickHandler}
 			onKeyDown={onClickHandler}
 			value={index}
-			key={index}
 			role="button"
 			tabIndex={0}
 		/>

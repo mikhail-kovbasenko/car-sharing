@@ -1,13 +1,16 @@
-import { combineReducers, createStore } from "redux"
-import  slider from './reducers/slider';
+import { applyMiddleware, combineReducers, createStore } from "redux"
+import slider from './reducers/slider';
 import sidebar from "./reducers/sidebar";
+import order from "./reducers/order-reducer/order";
+import thunk from "redux-thunk";
 
 const reducers = combineReducers({
 	slider,
-	sidebar
+	sidebar,
+	order
 })
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 window.store = store.getState();
 
