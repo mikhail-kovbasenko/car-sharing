@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import './Total.scss';
 
-const Total = ({model, modelNum, modelInfo, completedпше, rentFrom}) => {
+const Total = ({model, modelNum, modelInfo, completed, rentFrom}) => {
 	return (
 		<div className="total">
 			<div className="total__content">
