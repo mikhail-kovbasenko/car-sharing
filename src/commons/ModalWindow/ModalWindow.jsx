@@ -5,6 +5,7 @@ import './ModalWindow.scss';
 
 const ModalWindow = ({toggleModal}) => {
 	const dispatch = useDispatch();
+
 	const confirmOrder = useCallback(() => {
 		dispatch(confirmOrderActionCreator());
 		dispatch(toggleModalWindowStateActionCreator());
