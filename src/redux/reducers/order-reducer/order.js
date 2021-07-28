@@ -1,4 +1,4 @@
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITIES_LIST, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_FOR_INPUT, SET_PICKUP_LIST, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITIES_LIST, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_FOR_INPUT, SET_PICKUP_LIST, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, SET_SAVED_ORDER_ID, TOGGLE_MODAL_WINDOW } from "../../types";
 
 const initialState = {
 	navItems: [
@@ -23,7 +23,10 @@ const initialState = {
 	},
 	extraData: {
 		color: 'Любой',
-		rate: 'Поминутно',
+		rate: {
+			id: null,
+			name: null
+		},
 		rentFrom: '',
 		rentTo: '',
 		fuel: false,
@@ -33,7 +36,7 @@ const initialState = {
 	},
 	isModalWindowOpen: false,
 	completed: false,
-	orderNumber: 'RU58491823'
+	orderNumber: null
 }
 
 const order = (state = initialState, action) => {
@@ -125,7 +128,10 @@ const order = (state = initialState, action) => {
 				...state,
 				extraData: {
 					...state.extraData,
-					rate: action.data.value
+					rate: {
+						id: action.data.id,
+						name: action.data.name
+					}
 				}
 			}
 		}
@@ -248,6 +254,12 @@ const order = (state = initialState, action) => {
 					...state.locationData,
 					pickUpPointListForInput: action.data.data
 				}
+			}
+		}
+		case SET_SAVED_ORDER_ID: {
+			return {
+				...state,
+				orderNumber: action.data.id
 			}
 		}
 		default: return state;

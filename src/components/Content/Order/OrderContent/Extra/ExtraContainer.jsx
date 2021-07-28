@@ -21,7 +21,12 @@ const ExtraContainer = ({
 	checkCompletedExtra
 }) => {
 	const changeRadioValueColor = event => changeColor(event.target.value);
-	const changeRadioValueRate = event => changeRate(event.target.value);
+	const changeRadioValueRate = event => {
+		const id = event.target.value;
+		const name = event.target.dataset.name;
+
+		changeRate(id, name);
+	} 
 	const checkCheckboxValueFuel = event => checkFuel(event.target.checked);
 	const checkCheckboxValueBabyChair = event => checkBabyChair(event.target.checked);
 	const checkCheckboxValueRightHandDrive = event => checkRightHandDrive(event.target.checked);
@@ -37,7 +42,7 @@ const ExtraContainer = ({
 	}
 
 	useEffect(() => checkCompletedExtra(), [rentFrom, rentTo]);
-
+	console.log(rate);
 	return <Extra changeRadioValueColor={changeRadioValueColor}
 		color={color}
 		rate={rate}
@@ -58,7 +63,7 @@ const ExtraContainer = ({
 
 const mapStateToProps = state => ({
 	color: state.order.extraData.color,
-	rate: state.order.extraData.rate,
+	rate: state.order.extraData.rate.id,
 	babyChair: state.order.extraData.babyChair,
 	fuel: state.order.extraData.fuel,
 	rightHandDrive: state.order.extraData.rightHandDrive,
@@ -67,7 +72,7 @@ const mapStateToProps = state => ({
 })
 const mapDispatchToProps = dispatch => ({
 	changeColor: value => dispatch(changeColorModelActionCreator(value)),
-	changeRate: value => dispatch(changeRateActionCreator(value)),
+	changeRate: (id, name) => dispatch(changeRateActionCreator(id, name)),
 	checkFuel: bool => dispatch(checkFuelActionCreator(bool)),
 	checkBabyChair: bool => dispatch(checkBabyChairActionCreator(bool)),
 	checkRightHandDrive: bool => dispatch(checkRightHandDriveActionCreator(bool)),

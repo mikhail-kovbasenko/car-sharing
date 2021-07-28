@@ -14,7 +14,7 @@ const Total = ({model, modelNum, modelInfo, completed, rentFrom}) => {
 				}
 				<div className="total__model">{model.title}</div>
 				<div className="total__number">
-					<div className="total__number-block">{modelNum}</div>
+					<div className="total__number-block">{model.number}</div>
 				</div>
 				{modelInfo}
 				<div className="total__available">

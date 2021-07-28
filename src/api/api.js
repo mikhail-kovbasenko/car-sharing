@@ -6,7 +6,7 @@ const instance = axios.create({
 		'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
 	}
 })
-const instanceForPost = axios.create({
+const instancePost = axios.create({
 	baseURL: 'https://api-factory.simbirsoft1.com/api/',
 	headers: {
 		'X-Api-Factory-Application-Id': '5e25c641099b810b946c5d5b',
@@ -19,6 +19,9 @@ export const orderAPI = {
 	},
 	getPickUpPointList(limit) {
 		return instance.get(`db/point?limit=${limit}`);
+	},
+	sendOrderDataInServer(data) {
+		return instancePost.post(`db/order`, data);
 	}
 }
 export const appAPI = {
