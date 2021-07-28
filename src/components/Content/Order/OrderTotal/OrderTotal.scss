@@ -98,6 +98,9 @@
 			right: 0;
 			width: 300px;
 		}
+		@include beforeTablet() {
+			width: 100px;
+		}
 		& a {
 			display: inline-block;
 			font-size: 18px;
@@ -106,7 +109,7 @@
 			padding: 15px 0 11px 0;
 			width: 100%;
 			@include beforeTablet() {
-				font-size: 14px;
+				font-size: 12px;
 				padding: 12px 0 8px 0;
 			}
 		}
