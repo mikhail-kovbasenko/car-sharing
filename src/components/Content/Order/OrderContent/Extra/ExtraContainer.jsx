@@ -42,7 +42,7 @@ const ExtraContainer = ({
 	}
 
 	useEffect(() => checkCompletedExtra(), [rentFrom, rentTo]);
-	console.log(rate);
+	
 	return <Extra changeRadioValueColor={changeRadioValueColor}
 		color={color}
 		rate={rate}
