@@ -24,3 +24,4 @@ export const SET_CITIES_LIST = 'set-cities-list';
 export const SET_PICKUP_LIST = 'set-pickup-list';
 export const SET_PICKUP_FOR_INPUT = 'set-pickup-for-input';
 export const SET_SAVED_ORDER_ID = 'set-saved-order-id';
+export const TOGGLE_SENDING_LOADER = 'toggle-sending-loader';

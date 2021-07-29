@@ -1,5 +1,5 @@
 import { orderAPI } from "../../../api/api";
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, SET_PICKUP_VALUE, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, 	SET_CITIES_LIST, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW, SET_PICKUP_LIST, SET_PICKUP_FOR_INPUT, SET_SAVED_ORDER_ID } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, SET_PICKUP_VALUE, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, 	SET_CITIES_LIST, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW, SET_PICKUP_LIST, SET_PICKUP_FOR_INPUT, SET_SAVED_ORDER_ID, TOGGLE_SENDING_LOADER } from "../../types";
 
 /* Action Creators */
 
@@ -63,11 +63,12 @@ export const checkCompletedExtraData = () => ({
 export const toggleModalWindowStateActionCreator = () => ({
 	type: TOGGLE_MODAL_WINDOW,
 })
-const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
 export const setPickUpListForInputActionCreator = data => ({
 	type: SET_PICKUP_FOR_INPUT,
 	data: {data}
 })
+export const toggleSendingLoaderActionCreator = () => ({type: TOGGLE_SENDING_LOADER})
+const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
 const setCarModelActionCreator = data => ({
 	type: SET_CAR_MODELS,
 	data: {data}
@@ -116,6 +117,7 @@ export const sendOrderData = data => dispatch => {
 		if(response.status === 200) {
 			dispatch(setSavedOrderIdActionCreator(response.data.data.id));
 			dispatch(confirmOrderActionCreator());
+			dispatch(toggleSendingLoaderActionCreator());
 		}
 	})
 }

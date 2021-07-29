@@ -6,7 +6,6 @@ const OrderNavigationContainer = () => {
 	const completed = useSelector(state => state.order.completed);
 	const orderNumber = useSelector(state => state.order.orderNumber);
 
-
 	return <OrderNavigation items={navItems} completed={completed} orderNumber={orderNumber}/>
 }
 

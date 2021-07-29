@@ -8,7 +8,8 @@ const TotalContainer = () => {
 	const orderNumber = useSelector(state => state.order.orderNumber);
 	const rentFrom = useSelector(state => state.order.extraData.rentFrom);
 	const {fuel, babyChair, rightHandDrive} = useSelector(state => state.order.extraData);
-	
+	const sendingLoader = useSelector(state => state.order.sendingOrderLoader);
+
 	const formatter = new Intl.DateTimeFormat("ru", {
 		day: 'numeric',
 		month: 'numeric',
@@ -50,6 +51,7 @@ const TotalContainer = () => {
 						completed={completed}
 						orderNumber={orderNumber}
 						rentFrom={rentFromFormat}
+						sendingLoader={sendingLoader}
 					/>
 }
 
