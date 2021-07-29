@@ -25,7 +25,7 @@ const OrderNavigation = ({items, completed, orderNumber}) => {
 		<div className="order__navigation">
 			<div className="order__navigation-border">
 				{
-					completed ? <CompletedOrderNumber>{`Заказ номер ${orderNumber}`}</CompletedOrderNumber>
+					completed ? <CompletedOrderNumber>{`Заказ номер RU${orderNumber}`}</CompletedOrderNumber>
 					: getNavigationItems
 				}
 			</div>

@@ -61,6 +61,7 @@
 	}
 	&__car {
 		& > img {
+			width: 400px;
 			@include beforeTablet() {
 				width: 200px;
 			}

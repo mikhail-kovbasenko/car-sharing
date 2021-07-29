@@ -1,9 +1,13 @@
 import { useEffect, useRef } from "react";
-import { connect } from "react-redux"
-import { checkCompletedLocationData, setCityValueActionCreator, setPickUpListForInputActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order-reducer/order-action-creators";
+import { connect } from "react-redux";
+import Preloader from "./../../../../../commons/Preloader/Preloader";
+import { checkCompletedLocationData, getPickUpPointList, setCityValueActionCreator, setPickUpListForInputActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order-reducer/order-action-creators";
 import Location from './Location';
 
-const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPageComplete, setPickUpPointForInput }) => {
+const cityLimit = 15;
+const pickPointLimit = 50;
+
+const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPageComplete, getPoints, setPickPointForInput }) => {
 	const { city, pickUpPoint, cityList, pickUpPointList, pickUpPointListForInput } = data;
 	const inputCityRef = useRef();
 
@@ -13,50 +17,60 @@ const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPa
 	const onInputCityField = event => {
 		const value = event.target.value;
 
-		const result = pickUpPointList.filter(item => {
-			if (item.city_id === value) return item;
-		})
+		const city = cityList.find(city => value.toLowerCase() === city.name.toLowerCase());
+		if(city) {
+			const pointsList = pickUpPointList.filter(point => {
+				if(!point.cityId) return false;
+				if(point.cityId.id === city.id) return point;
+			})
 
-		setPickUpPointForInput(result)
+			setPickPointForInput(pointsList);
+		}
+
+		
 	}
 	const onInputPickUpField = event => {
 		const value = event.target.value;
 
-		if (value.length < 2 && city === '') setPickUpPointForInput([]);
+		if (value.length < 2 && city === '') setPickPointForInput([]);
 		if (value.length >= 2 && city === '') {
 			const result = pickUpPointList.filter(item => {
-				if (item.name.indexOf(value) !== -1) return item;
+				if(item.name.indexOf(value) !== -1 || item.address.indexOf(value) !== -1) {
+					return item;
+				}
 			})
-			
-			setPickUpPointForInput(result);
-		}
-
-		getCityNameFromPickPoint(value);
-		
+			setPickPointForInput(result);
+			getCityNameFromPickPoint(value);
+		}		
 	}
+
 	const getCityNameFromPickPoint = string => {
-		const index = string.indexOf(',');
-		if(index === -1) return;
-
-		const city = string.slice(index + 2);
-
-		if(checkCorrectCityName(city)) setCityValue(city);
-	}
-	const checkCorrectCityName = string => {
-		return cityList.some(city => city.name === string)
+		const place = string.split(',')[0];
+		if(!place) return;
+		const point = pickUpPointList.find(item => {
+			if(item.name === place.trim()) {
+				return item;
+			}
+		})
+		
+		if(point) setCityValue(point.cityId.name || 'UNKNOW');
 	}
 	useEffect(() => checkLocationPageComplete(), [city, pickUpPoint]);
-
-	return <Location city={city}
-		pickUp={pickUpPoint}
-		onChangeCity={onChangeCity}
-		onChangePickUp={onChangePickUp}
-		cityList={cityList}
-		onInputCityField={onInputCityField}
-		onInputPickUpField={onInputPickUpField}
-		pickUpPointListForInput={pickUpPointListForInput}
-		inputCityRef={inputCityRef}
-	/>
+	useEffect(() => {
+		if(!cityList) getPoints(pickPointLimit);
+	}, [])
+	return !cityList
+			 ? <Preloader/>
+			 :	<Location   city={city}
+								pickUp={pickUpPoint}
+								onChangeCity={onChangeCity}
+								onChangePickUp={onChangePickUp}
+								cityList={cityList}
+								pickUpPointList={pickUpPointListForInput}
+								onInputCityField={onInputCityField}
+								onInputPickUpField={onInputPickUpField}
+								inputCityRef={inputCityRef}
+							/>
 }
 
 const mapStateToProps = state => ({
@@ -72,8 +86,11 @@ const mapDispatchToProps = dispatch => ({
 	checkLocationPageComplete: () => {
 		dispatch(checkCompletedLocationData());
 	},
-	setPickUpPointForInput: data => {
+	setPickPointForInput: data => {
 		dispatch(setPickUpListForInputActionCreator(data))
+	},
+	getPoints: limit => {
+		dispatch(getPickUpPointList(limit));
 	}
 })
 

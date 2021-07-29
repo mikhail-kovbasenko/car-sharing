@@ -24,7 +24,7 @@ const OrderTotalContainer = ({
 	pickUp,
 	completed
 }) => {
-	const model = carModels.find(item => item.id === checkedModel);
+	const model = carModels ? carModels.find(item => item.id === checkedModel) : null;
 
 	const renderNextButton = (text, to, id) => {
 		let defaultClass = 'button'
@@ -83,7 +83,7 @@ const mapStateToProps = state => ({
 	carModels: state.order.modelData.carsModels,
 	checkedModel: state.order.modelData.checkedModel,
 	color: state.order.extraData.color,
-	rate: state.order.extraData.rate,
+	rate: state.order.extraData.rate.name,
 	babyChair: state.order.extraData.babyChair,
 	fuel: state.order.extraData.fuel,
 	rentTo: state.order.extraData.rentTo,

@@ -6,10 +6,9 @@
 	font-size: 14px;
 	overflow: hidden;
 	position: relative;
-	@include desktopMin() {
-		font-size: 12px;
-	}
-	@include beforeTablet() {
+
+	width: 100%;
+	@include beforeTabletMax() {
 		font-size: 10px;
 	}
 	&__container {
@@ -28,6 +27,7 @@
 		margin-bottom: 45px;
 		@include beforeTabletMax() {
 			width: 50%;
+			font-size: 12px;
 		}
 		@include beforeTablet() {
 			width: 100%;
@@ -47,6 +47,9 @@
 		&:first-child {
 			padding-top: 2px;
 			margin-bottom: 14px;
+			@include beforeTabletMax() {
+				padding-top: 0px;
+			}
 		}
 	}
 	&__element {
@@ -57,11 +60,9 @@
 			width: 224px;
 			border-bottom: 1px solid $greyColor;
 			padding: 0px 5px;
-			@include desktopMin() {
-				font-size: 12px;
-			}
-			@include beforeTablet() {
+			@include beforeTabletMax() {
 				font-size: 10px;
+				width: 164px;
 			}
 		}
 		& datalist {display: none;}

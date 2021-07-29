@@ -28,7 +28,7 @@ const OrderTotal = ({renderBtn, navItems, modelData, extraData, isModalOpen, loc
 					locationData.locationCompleted && getTotalInfoItem({title: 'Пункт выдачи', result: locationData.address})
 				}
 				{
-					modelData.model && modelData.modelCompleted && getTotalInfoItem({title: 'Модель', result: modelData.model.title})
+					modelData.model && modelData.modelCompleted && getTotalInfoItem({title: 'Модель', result: modelData.model.name})
 				}
 				{
 					extraData.color && extraData.extraCompleted && getTotalInfoItem({title: 'Цвет', result: extraData.color})

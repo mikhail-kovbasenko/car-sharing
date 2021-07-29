@@ -42,12 +42,10 @@ const TotalContainer = () => {
 	}
 
 	const model = carsModels.find(item => item.id === checkedModel)
-	const modelNum = 'K 761 HA 73';
 	const modelInfo = getCarInfoByCheckedOptions(fuel, babyChair, rightHandDrive);
 
 	return <Total
 						model={model}
-						modelNum={modelNum}
 						modelInfo={modelInfo}
 						completed={completed}
 						orderNumber={orderNumber}

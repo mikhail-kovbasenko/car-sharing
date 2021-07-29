@@ -1,5 +1,7 @@
 import { orderAPI } from "../../../api/api";
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_DATA_FOR_INPUT, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, SET_PICKUP_VALUE, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, 	SET_CITIES_LIST, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW, SET_PICKUP_LIST, SET_PICKUP_FOR_INPUT, SET_SAVED_ORDER_ID } from "../../types";
+
+/* Action Creators */
 
 export const setCityValueActionCreator = value => ({
 	type: SET_CITY_VALUE,
@@ -28,9 +30,9 @@ export const changeColorModelActionCreator = value => ({
 	type: CHANGE_COLOR_MODEL,
 	data: {value}
 })
-export const changeRateActionCreator = value => ({
+export const changeRateActionCreator = (id, name) => ({
 	type: CHANGE_RATE,
-	data: {value}
+	data: {id, name}
 })
 export const checkFuelActionCreator = bool => ({
 	type: CHECK_FUEL,
@@ -61,20 +63,59 @@ export const checkCompletedExtraData = () => ({
 export const toggleModalWindowStateActionCreator = () => ({
 	type: TOGGLE_MODAL_WINDOW,
 })
-export const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
+const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
 export const setPickUpListForInputActionCreator = data => ({
-	type: SET_PICKUP_DATA_FOR_INPUT,
+	type: SET_PICKUP_FOR_INPUT,
 	data: {data}
 })
 const setCarModelActionCreator = data => ({
 	type: SET_CAR_MODELS,
 	data: {data}
 })
+const setCitiesListActionCreator = data => ({
+	type: SET_CITIES_LIST,
+	data: {data}
+})
+const setPickUpPointListActionCreator = data => ({
+	type: SET_PICKUP_LIST,
+	data: {data}
+})
+const setSavedOrderIdActionCreator = id => ({
+	type: SET_SAVED_ORDER_ID,
+	data: {id}
+})
+/* Redux Thunks */
 
 export const getCarsList = limit => dispatch => {
 	orderAPI.getCars(limit).then(response => {
 		if(response.status === 200) {
 			dispatch(setCarModelActionCreator(response.data.data));
+		}
+	})
+}
+export const getPickUpPointList = limit => dispatch => {
+	orderAPI.getPickUpPointList(limit).then(response => {
+		if(response.status === 200) {
+			const pointList = response.data.data;
+			const citiesList = [];
+
+			for(let point of pointList) {
+				if(!point.cityId) continue;
+				if(citiesList.length < 1 || !citiesList.some(city => city.id === point.cityId.id)) {
+					citiesList.push(point.cityId);
+				}
+			}
+			
+			dispatch(setCitiesListActionCreator(citiesList));
+			dispatch(setPickUpPointListActionCreator(pointList));
+		}
+	})
+}
+export const sendOrderData = data => dispatch => {
+	orderAPI.sendOrderDataInServer(data).then(response => {
+		if(response.status === 200) {
+			dispatch(setSavedOrderIdActionCreator(response.data.data.id));
+			dispatch(confirmOrderActionCreator());
 		}
 	})
 }

@@ -8,6 +8,11 @@
 	position: absolute;
 	display: flex;
 	font-family: Roboto;
+	& .preloader {
+		display: flex;
+		align-self: center;
+		margin: 0 auto;
+	}
 }
 .button {
 	background: linear-gradient(90deg, $greenColor 2.61%, #039F67 112.6%);

@@ -102,6 +102,12 @@
 	}
 	&__forms {
 		width: 75%;
+		display: flex;
+		& .preloader {
+			display: flex;
+			align-self: center;
+			margin: 0 auto;
+		}
 		@include beforeTabletMax() {width: 100%;}
 
 	}

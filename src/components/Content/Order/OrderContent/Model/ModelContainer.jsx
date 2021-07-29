@@ -2,27 +2,30 @@ import Model from "./Model"
 import { connect } from "react-redux"
 import { changeModelsFilterActionCreator, checkCarModelActionCreator, checkCompletedModelData, getCarsList } from "../../../../../redux/reducers/order-reducer/order-action-creators"
 import { useEffect } from "react";
+import Preloader from "../../../../../commons/Preloader/Preloader";
 
+const carsLimitCount = 50;
 
-const ModelContainer = ({cars, checkedModel, checkCar, filterModelsValue, changeFilter, checkCompletedModel, carsE, getCars}) => {
+const ModelContainer = ({cars, checkedModel, checkCar, filterModelsValue, changeFilter, checkCompletedModel, getCars}) => {
 	const clickOnCarModel = id => checkCar(id);
 	const changeRadioValue = event => changeFilter(+event.target.value);
 
 	useEffect(() => checkCompletedModel(), [checkedModel]);
-	useEffect(() => getCars(20), []);
-	console.log(carsE);
+	useEffect(() => getCars(carsLimitCount), []);
 
-	return <Model cars={cars} 
-				     clickOnCarModel={clickOnCarModel} 
-					  checkedModel={checkedModel}
-					  radioValue={filterModelsValue}
-					  changeRadioValue={changeRadioValue}
-					/>
+	return   !cars
+				? <Preloader/>
+				: <Model cars={cars} 
+						   clickOnCarModel={clickOnCarModel} 
+						   checkedModel={checkedModel}
+						   radioValue={filterModelsValue}
+						   changeRadioValue={changeRadioValue}
+		 			   />
+
 }
 
 const mapStateToProps = state => ({
 	cars: state.order.modelData.carsModels,
-	carsE: state.order.modelData.carsModelEdit,
 	checkedModel: state.order.modelData.checkedModel,
 	filterModelsValue: state.order.modelData.filterModelsValue
 })

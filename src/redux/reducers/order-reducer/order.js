@@ -1,4 +1,4 @@
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_DATA_FOR_INPUT, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITIES_LIST, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_FOR_INPUT, SET_PICKUP_LIST, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, SET_SAVED_ORDER_ID, TOGGLE_MODAL_WINDOW } from "../../types";
 
 const initialState = {
 	navItems: [
@@ -8,57 +8,25 @@ const initialState = {
 		{id: 4, title: 'Итого', to: 'total', completed: false, nextPage: null}
 	],
 	locationData: {
-		cityList: [
-			{id: 1, name: 'Казань'},
-			{id: 2, name: 'Ульяновск'},
-			{id: 3, name: 'Москва'},
-			{id: 4, name: 'Санкт-Петербург'},
-			{id: 5, name: 'Сочи'},
-			{id: 6, name: 'Новосибирск'},
-			{id: 7, name: 'Краснодар'}
-		],
-		pickUpPointList: [
-			{id: 1, city_id: 'Казань', name: 'Белинского 18'},
-			{id: 2, city_id: 'Казань', name: 'Дементьева 2А'},
-			{id: 3, city_id: 'Казань', name: 'Фучика 33'},
-			{id: 4, city_id: 'Ульяновск', name: 'Нариманова 42'},
-			{id: 5, city_id: 'Ульяновск', name: 'Гоначарова 1А'},
-			{id: 6, city_id: 'Москва', name: 'Пушкина 22'},
-			{id: 7, city_id: 'Москва', name: 'Ферсмана 5'},
-			{id: 8, city_id: 'Москва', name: 'Чаянова 50'},
-			{id: 9, city_id: 'Санкт-Петербург', name: 'Караванная 3'},
-			{id: 10, city_id: 'Санкт-Петербург', name: 'Рубинштейна 7'},
-			{id: 11, city_id: 'Сочи', name: 'Орджоникидзе 22'},
-			{id: 12, city_id: 'Сочи', name: 'Островского 19'},
-			{id: 13, city_id: 'Новосибирск', name: 'Фрунзе 44'},
-			{id: 14, city_id: 'Новосибирск', name: 'Ленина 55'},
-			{id: 15, city_id: 'Новосибирск', name: 'Максима Горького 7'},
-			{id: 16, city_id: 'Краснодар', name: 'Рашпилевская 11'},
-		],
+		cityList: null,
+		pickUpPointList: null,
+		pickUpPointListForInput: [],
 		city: '',
 		pickUpPoint: '',
-		pickUpPointListForInput: [],
 		completed: false
 	},
 	modelData: {
-		carsModels: [
-			{id: 1, src: 'image 1.jpg', alt: 'image_1', title: 'ELANTRA', min: 12000, max: 25000},
-			{id: 2, src: 'image 2.jpg', alt: 'image_2', title: 'i30 N', min: 10000, max: 32000},
-			{id: 3, src: 'image 3.jpg', alt: 'image_3', title: 'CRETA', min: 12000, max: 25000},
-			{id: 4, src: 'image 4.jpg', alt: 'image_4', title: 'SONATA', min: 10000, max: 32000},
-			{id: 5, src: 'image 1.jpg', alt: 'image_1', title: 'ELANTRA', min: 12000, max: 25000},
-			{id: 6, src: 'image 2.jpg', alt: 'image_2', title: 'i30 N', min: 10000, max: 32000},
-			{id: 7, src: 'image 3.jpg', alt: 'image_3', title: 'CRETA', min: 12000, max: 25000},
-			{id: 8, src: 'image 4.jpg', alt: 'image_4', title: 'SONATA', min: 10000, max: 32000}
-		],
-		carsModelEdit: null,
-		filterModelsValue: 0,
+		carsModels: null,
+		modelsFilter: [],
 		checkedModel: false,
 		completed: false
 	},
 	extraData: {
 		color: 'Любой',
-		rate: 'Поминутно',
+		rate: {
+			id: null,
+			name: null
+		},
 		rentFrom: '',
 		rentTo: '',
 		fuel: false,
@@ -68,7 +36,7 @@ const initialState = {
 	},
 	isModalWindowOpen: false,
 	completed: false,
-	orderNumber: 'RU58491823'
+	orderNumber: null
 }
 
 const order = (state = initialState, action) => {
@@ -160,7 +128,10 @@ const order = (state = initialState, action) => {
 				...state,
 				extraData: {
 					...state.extraData,
-					rate: action.data.value
+					rate: {
+						id: action.data.id,
+						name: action.data.name
+					}
 				}
 			}
 		}
@@ -249,7 +220,34 @@ const order = (state = initialState, action) => {
 				completed: true
 			}
 		}
-		case SET_PICKUP_DATA_FOR_INPUT: {
+		case SET_CAR_MODELS: {
+			return {
+				...state,
+				modelData: {
+					...state.modelData,
+					carsModels: action.data.data
+				}
+			}
+		}
+		case SET_CITIES_LIST: {
+			return {
+				...state,
+				locationData: {
+					...state.locationData,
+					cityList: action.data.data
+				}
+			}
+		}
+		case SET_PICKUP_LIST: {
+			return {
+				...state,
+				locationData: {
+					...state.locationData,
+					pickUpPointList: action.data.data
+				}
+			}
+		}
+		case SET_PICKUP_FOR_INPUT: {
 			return {
 				...state,
 				locationData: {
@@ -258,13 +256,10 @@ const order = (state = initialState, action) => {
 				}
 			}
 		}
-		case SET_CAR_MODELS: {
+		case SET_SAVED_ORDER_ID: {
 			return {
 				...state,
-				modelData: {
-					...state.modelData,
-					carsModelEdit: action.data.data
-				}
+				orderNumber: action.data.id
 			}
 		}
 		default: return state;

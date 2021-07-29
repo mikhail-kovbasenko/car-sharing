@@ -1,19 +1,26 @@
-const ExtraRate = ({rate, changeRadioValueRate}) => {
+const ExtraRate = ({rate, rateList, changeRadioValueRate}) => {
+	const getRateRadioElements = rateList.map((item, index) => {
+		return (
+			<label className="control control-radio" htmlFor={`extra-rate-${index}`} key={item.rateTypeId.id}>
+				{`${item.rateTypeId.name}, ${item.price} ₽/${item.rateTypeId.unit}`}
+				<input type="radio" 
+				       name="extra-rate-radio" 
+						 id={`extra-rate-${index}`} 
+						 value={item.rateTypeId.id}
+						 data-name={item.rateTypeId.name}
+						 checked={rate === item.rateTypeId.id}
+						 onChange={changeRadioValueRate}
+					/>
+				<div className="control_indicator"></div>
+			</label>
+		)
+	})
 	return (
 		<div className="extra__rate">
 			<div className="extra-title">Тариф</div>
 			<div className="extra__date-group">
 				<div className="extra__group control-group">
-					<label className="control control-radio" htmlFor="extra-rate-1">
-						Поминутно, 7₽/мин
-						<input type="radio" name="extra-rate-radio" id="extra-rate-1" value="Поминутно" checked={rate === "Поминутно"} onChange={changeRadioValueRate} />
-						<div className="control_indicator"></div>
-					</label>
-					<label className="control control-radio" htmlFor="extra-rate-2">
-						На сутки, 1999 ₽/сутки
-						<input type="radio" name="extra-rate-radio" id="extra-rate-2" value="На сутки" checked={rate === "На сутки"} onChange={changeRadioValueRate} />
-						<div className="control_indicator"></div>
-					</label>
+					{getRateRadioElements}
 				</div>
 			</div>
 		</div>

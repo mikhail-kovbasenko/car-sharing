@@ -5,8 +5,26 @@ import './Slider.scss';
 import styled from "styled-components";
 import SlideInfo from "./SlideInfo/SlideInfo";
 import nextId from "react-id-generator";
+import { useLayoutEffect } from "react";
+import { useState } from "react";
 
-const Slider = ({sliders, sliderRef, height}) => {
+const Slider = ({sliders, sliderRef, height, setSliderHeight}) => {
+	const [slider, setSlider] = useState();
+
+	useLayoutEffect(() => {
+		if(sliderRef && sliderRef.current) {
+			setSlider(sliderRef.current);
+			setSliderHeight(sliderRef.current.offsetHeight);
+			
+			const onResize = () => setSliderHeight(slider.offsetHeight);
+
+			window.addEventListener('resize', onResize);
+
+			return () => window.removeEventListener('resize', onResize);
+		}
+	}, [slider])
+
+
 	const getSlides = sliders.map((slide) => {
 		const keyId = nextId();
 

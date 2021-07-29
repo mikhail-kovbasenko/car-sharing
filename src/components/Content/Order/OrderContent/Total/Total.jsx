@@ -1,7 +1,11 @@
 import styled from 'styled-components';
+import { getCorrectSrcForImg } from '../../../../../utils/correctSrcForImg';
 import './Total.scss';
+import defaultCar from "../../../../../commons/icons/model-order-icons/default-cars.jpeg";
 
-const Total = ({model, modelNum, modelInfo, completed, orderNumber, rentFrom}) => {
+const Total = ({model, modelNum, modelInfo, completed, rentFrom}) => {
+	const src = getCorrectSrcForImg(model.thumbnail.path);
+
 	return (
 		<div className="total">
 			<div className="total__content">
@@ -10,7 +14,7 @@ const Total = ({model, modelNum, modelInfo, completed, orderNumber, rentFrom}) =
 				}
 				<div className="total__model">{model.title}</div>
 				<div className="total__number">
-					<div className="total__number-block">{modelNum}</div>
+					<div className="total__number-block">{model.number}</div>
 				</div>
 				{modelInfo}
 				<div className="total__available">
@@ -19,7 +23,7 @@ const Total = ({model, modelNum, modelInfo, completed, orderNumber, rentFrom}) =
 				</div>
 			</div>
 			<div className="total__car">
-				<img src={`${process.env.PUBLIC_URL}/order-cars/${model.src}`} alt="" />
+				<img crossOrigin="anonymous" referrerPolicy="origin" src={src} alt={model.title} onError={event => event.target.src = defaultCar} />
 			</div>
 		</div>
 	)
