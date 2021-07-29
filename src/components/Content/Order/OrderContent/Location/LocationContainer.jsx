@@ -32,22 +32,28 @@ const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPa
 	const onInputPickUpField = event => {
 		const value = event.target.value;
 
-		if (value.length < 2 && city === '') return;
+		if (value.length < 2 && city === '') setPickPointForInput([]);
 		if (value.length >= 2 && city === '') {
 			const result = pickUpPointList.filter(item => {
-				if (item.name.indexOf(value) !== -1) return item;
+				if(item.name.indexOf(value) !== -1 || item.address.indexOf(value) !== -1) {
+					return item;
+				}
 			})
-		}
-
-		getCityNameFromPickPoint(value);
-		
+			setPickPointForInput(result);
+			getCityNameFromPickPoint(value);
+		}		
 	}
 
 	const getCityNameFromPickPoint = string => {
-
-	}
-	const checkCorrectCityName = string => {
-
+		const place = string.split(',')[0];
+		if(!place) return;
+		const point = pickUpPointList.find(item => {
+			if(item.name === place.trim()) {
+				return item;
+			}
+		})
+		
+		if(point) setCityValue(point.cityId.name || 'UNKNOW');
 	}
 	useEffect(() => checkLocationPageComplete(), [city, pickUpPoint]);
 	useEffect(() => {
