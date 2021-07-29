@@ -1,4 +1,5 @@
 import { appAPI } from "../../../api/api"
+import { defaultOrderStatusData, defaultRentData } from "../../../utils/defaultData";
 import { SET_INITIALAZE_APP, SET_ORDER_STATUS_LIST, SET_RATE_LIST } from "../../types";
 import { changeRateActionCreator } from "../order-reducer/order-action-creators";
 
@@ -15,13 +16,18 @@ const setRentListActionCreator = data => ({
 })
 
 export const initialazedAppActionCreator = () => dispatch => {
-	Promise.all([appAPI.getOrderStatusList(), appAPI.getRateStatusList()])
+	const {getOrderStatusList, getRateStatusList} = appAPI;
+
+	Promise.all([getOrderStatusList(), getRateStatusList()])
 		.then(response => {
 			const [orderStatusResponse, rateResponse] = response;
 
-			dispatch(setOrderStatusListActionCreator(orderStatusResponse.data.data));
-			dispatch(setRentListActionCreator(rateResponse.data.data));
-			dispatch(changeRateActionCreator(rateResponse.data.data[0].rateTypeId.id));
+			const orderStatusResponseData = orderStatusResponse ? orderStatusResponse.data.data : defaultOrderStatusData;
+			const rateResponseData = rateResponse ? rateResponse.data.data : defaultRentData;
+
+			dispatch(setOrderStatusListActionCreator(orderStatusResponseData));
+			dispatch(setRentListActionCreator(rateResponseData));
+			dispatch(changeRateActionCreator(rateResponseData[0].rateTypeId.id));
 			dispatch(setInitialazeAppActionCreator());
 		})
 }
