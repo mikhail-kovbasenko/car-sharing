@@ -22,6 +22,9 @@ export const orderAPI = {
 	},
 	sendOrderDataInServer(data) {
 		return instancePost.post(`db/order`, data);
+	},
+	getOrderById(id) {
+		return instance.get(`db/order/${id}`);
 	}
 }
 export const appAPI = {

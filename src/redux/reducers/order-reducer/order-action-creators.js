@@ -1,5 +1,5 @@
 import { orderAPI } from "../../../api/api";
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, SET_PICKUP_VALUE, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, 	SET_CITIES_LIST, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW, SET_PICKUP_LIST, SET_PICKUP_FOR_INPUT, SET_SAVED_ORDER_ID, TOGGLE_SENDING_LOADER } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, SET_PICKUP_VALUE, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, SET_CAR_MODELS, SET_CITY_VALUE, SET_COMPLETE_PAGE, 	SET_CITIES_LIST, SET_RENT_FROM, SET_RENT_TO, TOGGLE_MODAL_WINDOW, SET_PICKUP_LIST, SET_PICKUP_FOR_INPUT, TOGGLE_SENDING_LOADER, SET_GET_ORDER_COMPLETE, SET_SAVED_ORDER_IN_STATE, SET_ORDER_ID } from "../../types";
 
 /* Action Creators */
 
@@ -68,7 +68,6 @@ export const setPickUpListForInputActionCreator = data => ({
 	data: {data}
 })
 export const toggleSendingLoaderActionCreator = () => ({type: TOGGLE_SENDING_LOADER})
-const confirmOrderActionCreator = () => ({type: CONFIRM_ORDER})
 const setCarModelActionCreator = data => ({
 	type: SET_CAR_MODELS,
 	data: {data}
@@ -81,8 +80,12 @@ const setPickUpPointListActionCreator = data => ({
 	type: SET_PICKUP_LIST,
 	data: {data}
 })
-const setSavedOrderIdActionCreator = id => ({
-	type: SET_SAVED_ORDER_ID,
+const setSavedOrderInStateActionCreator = data => ({
+	type: SET_SAVED_ORDER_IN_STATE,
+	data: {data}
+})
+const setOrderIdActionCreator = id => ({
+	type: SET_ORDER_ID,
 	data: {id}
 })
 /* Redux Thunks */
@@ -112,12 +115,21 @@ export const getPickUpPointList = limit => dispatch => {
 		}
 	})
 }
+export const getOrderById = id => dispatch => {
+	orderAPI.getOrderById(id).then(response => {
+		if(response.status === 200) {
+			console.log(response);
+			dispatch(setSavedOrderInStateActionCreator(response.data.data));
+		}
+	})	
+}
 export const sendOrderData = data => dispatch => {
 	orderAPI.sendOrderDataInServer(data).then(response => {
 		if(response.status === 200) {
-			dispatch(setSavedOrderIdActionCreator(response.data.data.id));
-			dispatch(confirmOrderActionCreator());
+			console.log(response);
+			
 			dispatch(toggleSendingLoaderActionCreator());
+			dispatch(setOrderIdActionCreator(response.data.data.id));
 		}
 	})
 }

@@ -1,4 +1,4 @@
-import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITIES_LIST, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_PICKUP_FOR_INPUT, SET_PICKUP_LIST, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, SET_SAVED_ORDER_ID, TOGGLE_MODAL_WINDOW, TOGGLE_SENDING_LOADER } from "../../types";
+import { CHANGE_COLOR_MODEL, CHANGE_MODELS_FILTER, CHANGE_RATE, CHECK_BABYCHAIR, CHECK_CAR_MODEL, CHECK_COMPLETED_EXTRA_DATA, CHECK_COMPLETED_LOCATION_DATA, CHECK_COMPLETED_MODEL_DATA, CHECK_FUEL, CHECK_RIGHT_HAND_DRIVE, CONFIRM_ORDER, SET_CAR_MODELS, SET_CITIES_LIST, SET_CITY_VALUE, SET_COMPLETE_PAGE, SET_ORDER_ID, SET_PICKUP_FOR_INPUT, SET_PICKUP_LIST, SET_PICKUP_VALUE, SET_RENT_FROM, SET_RENT_TO, SET_SAVED_ORDER_IN_STATE, TOGGLE_MODAL_WINDOW, TOGGLE_SENDING_LOADER } from "../../types";
 
 const initialState = {
 	navItems: [
@@ -36,8 +36,8 @@ const initialState = {
 	},
 	isModalWindowOpen: false,
 	completed: false,
-	orderNumber: null,
 	sendingOrderLoader: false,
+	orderId: null,
 }
 
 const order = (state = initialState, action) => {
@@ -257,16 +257,53 @@ const order = (state = initialState, action) => {
 				}
 			}
 		}
-		case SET_SAVED_ORDER_ID: {
-			return {
-				...state,
-				orderNumber: action.data.id
-			}
-		}
 		case TOGGLE_SENDING_LOADER: {
 			return {
 				...state,
 				sendingOrderLoader: !state.sendingOrderLoader
+			}
+		}
+		case SET_ORDER_ID: {
+			return {
+				...state,
+				orderId: action.data.id,
+				completed: true
+			}
+		}
+		case SET_SAVED_ORDER_IN_STATE: {
+			const {data} = action.data;
+			console.log('It is reducer');
+			return {
+				...state,
+				locationData: {
+					...state.locationData,
+					city: data.cityId.name,
+					pickUpPoint: `${data.pointId.name}, ${data.pointId.address}`,
+					completed: true
+				},
+				modelData: {
+					...state.modelData,
+					completed: true,
+					checkedModel: data.carId.id,
+					carsModels: [data.carId],
+				},
+				extraData: {
+					...state.extraData,
+					color: data.color,
+					rentFrom: data.dateFrom,
+					rentTo: data.dateTo,
+					fuel: data.isFullTank,
+					babyChair: data.isNeedChildChair,
+					rightHandDrive: data.isRightWheel,
+					completed: true,
+					rate: {
+						id: data.rateId,
+						name: data.rateId
+					}
+				},
+				completed: true,
+				orderNumber: data.id,
+				orderId: data.id
 			}
 		}
 		default: return state;
