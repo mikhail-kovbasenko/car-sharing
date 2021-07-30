@@ -10,24 +10,26 @@ import { getOrderById } from './redux/reducers/order-reducer/order-action-creato
 
 const App = ({history}) => {
 	const init = useSelector(state => state.app.initialazed);
+	const unRefresh = useSelector(state => state.order.unRefresh);
 	const dispatch = useDispatch();
-
+	
 	useEffect(() => {
 		dispatch(initialazedAppActionCreator());
 	}, [init]);
-	// useEffect(() => {
-	// 	if(history.location.search !== '') {
-	// 		const query = new URLSearchParams(history.location.search);
-	// 		const id = query.get('id');
-	
-	// 		dispatch(getOrderById(id));
-	// 	}
-	// }, [history.location.search])
+
+	useEffect(() => {
+		if(history.location.search !== '' && !unRefresh) {
+			const query = new URLSearchParams(history.location.search);
+			const id = query.get('id');
+		
+			dispatch(getOrderById(id));
+		}
+	}, [history.location.search])
 	
 	return (
 		<div className="wrapper">
 			{
-				!init
+				!init || (history.location.search !== '' && !unRefresh)
 				? <Preloader/>
 				: <React.Fragment>
 						<Sidebar/>

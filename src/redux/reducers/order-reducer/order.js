@@ -38,6 +38,8 @@ const initialState = {
 	completed: false,
 	sendingOrderLoader: false,
 	orderId: null,
+	unRefresh: false,
+	loadingCompleted: false
 }
 
 const order = (state = initialState, action) => {
@@ -267,12 +269,12 @@ const order = (state = initialState, action) => {
 			return {
 				...state,
 				orderId: action.data.id,
-				completed: true
+				completed: true,
+				unRefresh: true
 			}
 		}
 		case SET_SAVED_ORDER_IN_STATE: {
 			const {data} = action.data;
-			console.log('It is reducer');
 			return {
 				...state,
 				locationData: {
@@ -302,8 +304,8 @@ const order = (state = initialState, action) => {
 					}
 				},
 				completed: true,
-				orderNumber: data.id,
-				orderId: data.id
+				orderId: data.id,
+				unRefresh: true
 			}
 		}
 		default: return state;

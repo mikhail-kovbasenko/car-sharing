@@ -4,7 +4,7 @@ import { changeModelsFilterActionCreator, checkCarModelActionCreator, checkCompl
 import { useEffect } from "react";
 import Preloader from "../../../../../commons/Preloader/Preloader";
 
-const carsLimitCount = 50;
+const carsLimitCount = 10;
 
 const ModelContainer = ({cars, checkedModel, checkCar, filterModelsValue, changeFilter, checkCompletedModel, getCars}) => {
 	const clickOnCarModel = id => checkCar(id);

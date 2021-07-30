@@ -118,7 +118,6 @@ export const getPickUpPointList = limit => dispatch => {
 export const getOrderById = id => dispatch => {
 	orderAPI.getOrderById(id).then(response => {
 		if(response.status === 200) {
-			console.log(response);
 			dispatch(setSavedOrderInStateActionCreator(response.data.data));
 		}
 	})	
@@ -126,8 +125,6 @@ export const getOrderById = id => dispatch => {
 export const sendOrderData = data => dispatch => {
 	orderAPI.sendOrderDataInServer(data).then(response => {
 		if(response.status === 200) {
-			console.log(response);
-			
 			dispatch(toggleSendingLoaderActionCreator());
 			dispatch(setOrderIdActionCreator(response.data.data.id));
 		}

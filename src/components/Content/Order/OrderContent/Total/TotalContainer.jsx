@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import nextId from "react-id-generator";
-import { shallowEqual, useSelector, useStore } from "react-redux";
+import { shallowEqual, useSelector } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Total from "./Total";
 
@@ -12,8 +12,6 @@ const TotalContainer = ({history}) => {
 	const {fuel, babyChair, rightHandDrive} = useSelector(state => state.order.extraData);
 	const sendingLoader = useSelector(state => state.order.sendingOrderLoader);
 	const orderId = useSelector(state => state.order.orderId);
-	const store = useStore();
-	console.log(store.getState());
 
 	useEffect(() => {
 		if(orderId && history.location.search === '') {
@@ -28,7 +26,7 @@ const TotalContainer = ({history}) => {
 		hour: 'numeric',
 		minute: 'numeric'
 	})
-	console.log(rentFrom);
+
 	const rentFromFormat = formatter.format(new Date(rentFrom));
 
 	const generateCarInfo = name => {

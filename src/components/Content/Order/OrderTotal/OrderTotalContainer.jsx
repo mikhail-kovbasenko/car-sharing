@@ -23,7 +23,7 @@ const OrderTotalContainer = ({
 	city,
 	pickUp,
 	completed,
-	sendingLoader
+	sendingLoader,
 }) => {
 	const model = carModels ? carModels.find(item => item.id === checkedModel) : null;
 
@@ -95,12 +95,15 @@ const mapStateToProps = state => ({
 	city: state.order.locationData.city,
 	pickUp: state.order.locationData.pickUpPoint,
 	completed: state.order.completed,
-	sendingLoader: state.order.sendingOrderLoader
+	sendingLoader: state.order.sendingOrderLoader,
 })
 
 const mapDispatchToProps = dispatch => ({
 	setCompletePage: id => dispatch(setCompletePageActionCreator(id)),
-	toggleModal: () => dispatch(toggleModalWindowStateActionCreator())
+	toggleModal: event => {
+		event.preventDefault();
+		dispatch(toggleModalWindowStateActionCreator());
+	}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderTotalContainer);
