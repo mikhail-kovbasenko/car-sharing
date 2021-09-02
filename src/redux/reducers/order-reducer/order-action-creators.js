@@ -105,7 +105,6 @@ export const getPickUpPointList = limit => dispatch => {
 					citiesList.push(point.cityId);
 				}
 			}
-			
 			dispatch(setCitiesListActionCreator(citiesList));
 			dispatch(setPickUpPointListActionCreator(pointList));
 		}

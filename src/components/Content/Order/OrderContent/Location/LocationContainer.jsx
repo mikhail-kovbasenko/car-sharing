@@ -3,13 +3,23 @@ import { connect } from "react-redux";
 import Preloader from "./../../../../../commons/Preloader/Preloader";
 import { checkCompletedLocationData, getPickUpPointList, setCityValueActionCreator, setPickUpListForInputActionCreator, setPickUpValueActionCreator } from "../../../../../redux/reducers/order-reducer/order-action-creators";
 import Location from './Location';
+import { useState } from "react";
 
-const cityLimit = 15;
 const pickPointLimit = 50;
 
 const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPageComplete, getPoints, setPickPointForInput }) => {
 	const { city, pickUpPoint, cityList, pickUpPointList, pickUpPointListForInput } = data;
 	const inputCityRef = useRef();
+
+	const [coords, setCoords] = useState(null);
+	const [map, setMap] = useState(null);
+	const defaultStateForMap = {
+		center: [55.471974, 49.071956],
+ 		zoom: 5,
+	}
+	const geocodeMap = map => {
+		map.geocode(`${city}, ${pickUpPoint}`).then(result => setCoords(result.geoObjects.get(0).geometry.getCoordinates()));
+	}
 
 	const onChangeCity = event => setCityValue(event.target.value);
 	const onChangePickUp = event => setPickupValue(event.target.value);
@@ -59,6 +69,11 @@ const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPa
 	useEffect(() => {
 		if(!cityList) getPoints(pickPointLimit);
 	}, [])
+	useEffect(() => {
+		if(checkLocationPageComplete && map) {
+			geocodeMap(map);
+		}
+	}, [map, city, pickUpPoint])
 	return !cityList
 			 ? <Preloader/>
 			 :	<Location   city={city}
@@ -70,6 +85,10 @@ const LocationContainer = ({ data, setCityValue, setPickupValue, checkLocationPa
 								onInputCityField={onInputCityField}
 								onInputPickUpField={onInputPickUpField}
 								inputCityRef={inputCityRef}
+								mapState={defaultStateForMap}
+								geocode={geocodeMap}
+								coords={coords}
+								setMap={setMap}
 							/>
 }
 
