@@ -22,7 +22,8 @@ const OrderTotalContainer = ({
 	toggleModal,
 	city,
 	pickUp,
-	completed
+	completed,
+	sendingLoader,
 }) => {
 	const model = carModels ? carModels.find(item => item.id === checkedModel) : null;
 
@@ -30,6 +31,7 @@ const OrderTotalContainer = ({
 		let defaultClass = 'button'
 		let secondClass = id ? 'disabled' : null;
 		const thirdClass = completed ? 'button-2' : null;
+		const fourthClass = sendingLoader ? 'disabled' : null;
 		const buttonText = completed ? 'Отменить' : text;
 		let completedPage = false;
 		let defaultOnClick = id ? setCompletePage.bind(null, id) : toggleModal.bind(null);
@@ -42,7 +44,7 @@ const OrderTotalContainer = ({
 		
 		secondClass = !completedPage ? secondClass : null; 
 
-		return <NavLink to={`/order/${to}`} className={`${defaultClass} ${secondClass} ${thirdClass}`} onClick={defaultOnClick}>{buttonText}</NavLink>
+		return <NavLink to={`/order/${to}`} className={`${defaultClass} ${secondClass} ${thirdClass} ${fourthClass}`} onClick={defaultOnClick}>{buttonText}</NavLink>
 	}
 	const calculateRentTime = (from, to) => {
 		let delta = (new Date(to) - new Date(from)) / 1000;
@@ -92,12 +94,16 @@ const mapStateToProps = state => ({
 	isModalOpen: state.order.isModalWindowOpen,
 	city: state.order.locationData.city,
 	pickUp: state.order.locationData.pickUpPoint,
-	completed: state.order.completed
+	completed: state.order.completed,
+	sendingLoader: state.order.sendingOrderLoader,
 })
 
 const mapDispatchToProps = dispatch => ({
 	setCompletePage: id => dispatch(setCompletePageActionCreator(id)),
-	toggleModal: () => dispatch(toggleModalWindowStateActionCreator())
+	toggleModal: event => {
+		event.preventDefault();
+		dispatch(toggleModalWindowStateActionCreator());
+	}
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(OrderTotalContainer);
